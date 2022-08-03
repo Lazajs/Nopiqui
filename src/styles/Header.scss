@@ -1,0 +1,38 @@
+@keyframes goUp {
+  0% {
+    opacity: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  50% {
+    opacity: .8;
+  }
+
+  100% {
+    opacity: 1;
+    top: 10rem;
+  }
+}
+
+.header {
+  z-index: 10;
+  width: 100vw;
+  height: 10rem;
+  display: block;
+  text-align: center;
+  font-family: 'Bad Script';
+  position: absolute;
+  top: 10rem;
+  animation: goUp ease-out 1s;
+
+  h1 {
+    font-weight: 400;
+    font-size: 4rem;
+    margin-bottom: 1rem;
+  }
+
+  small {
+    font-size: 1.6rem;
+  }
+}
