@@ -1,12 +1,21 @@
 import React from 'react'
 import './App.scss'
-// import Login from 'pages/Login'
+import { Routes, Route, BrowserRouter } from 'react-router-dom'
+import Login from 'pages/Login'
 import Register from 'pages/Register'
+import TypingAnimation from 'components/TypingAnimation'
 
 function App () {
   return (
-    // <Login />
-    <Register />
+    <>
+    <TypingAnimation />
+    {/* <BrowserRouter> */}
+       {/* <Routes> */}
+        {/* <Route path='/' element={<Login />} /> */}
+         {/* <Route path='/register' element={<Register />} /> */}
+        {/* </Routes> */}
+    {/* </BrowserRouter> */}
+    </>
   )
 }
 

@@ -8,7 +8,7 @@ export default function Register () {
       <Header />
       <form className='login'>
         <input placeholder='Your username' type='text' />
-        <input placeholder='New password' type='text' />
+        <input placeholder='New password' type='password' />
         <input placeholder='Confirm password' type='password' />
         <button type='submit'>Register</button>
         <p>Or <b>Log In</b></p>
