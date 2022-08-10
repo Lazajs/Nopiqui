@@ -12,6 +12,35 @@
   }
 }
 
+.invalid {
+  font-family: 'Assistant';
+  text-align: left;
+  text-decoration: underline;
+  color: #f00;
+  font-weight: 700;
+
+  &:hover ~ .requirements {
+    display: inline-block;
+
+    
+  }
+}
+
+.requirements {
+  text-align: left;
+  width: 30rem;
+  height: fit-content;
+  display: none;
+  position: absolute;
+  padding: 1.5rem;
+  border-radius: 10px;
+  background-color: white;
+  
+  &:hover {
+      display: inline-block;
+    }
+}
+
 .login {
   display: flex;
   flex-direction: column;

@@ -1,20 +1,23 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './App.scss'
 import { Routes, Route, BrowserRouter } from 'react-router-dom'
 import Login from 'pages/Login'
 import Register from 'pages/Register'
-import TypingAnimation from 'components/TypingAnimation'
+
+// import TypingAnimation from 'components/TypingAnimation'
+// {/* <TypingAnimation /> */}
 
 function App () {
+  
   return (
     <>
-    <TypingAnimation />
-    {/* <BrowserRouter> */}
-       {/* <Routes> */}
-        {/* <Route path='/' element={<Login />} /> */}
-         {/* <Route path='/register' element={<Register />} /> */}
-        {/* </Routes> */}
-    {/* </BrowserRouter> */}
+    <BrowserRouter>
+      <Routes>
+
+        <Route path='/login' element={<Login />} />
+        <Route path='/register' element={<Register />} />
+      </Routes>
+    </BrowserRouter>
     </>
   )
 }
