@@ -5,6 +5,7 @@ import bcrypt from 'bcrypt'
 import { UserData } from 'types'
 import dotenv from 'dotenv'
 import dayjs from 'dayjs'
+import logged from './middlewares/logged'
 
 dotenv.config()
 const router = Router()
@@ -24,7 +25,7 @@ router.post('/', async (req,res)=>{
     if (match) {
       const DataToJWT = {id: UserDBData._id, username: UserDBData.username}
       const token = jwt.sign(DataToJWT, process.env.JWT_SECRET as string, { expiresIn: process.env.JWT_EXPIRES })
-
+      console.log(token)
       const DataToSend = {
         username: UserDBData.username,
         notes: [] //send real notes afterwards
@@ -38,6 +39,11 @@ router.post('/', async (req,res)=>{
       }).header('Access-Control-Allow-Credentials', 'true').status(200).send(DataToSend).end()
     } else res.status(400).send({message: 'Invalid password'}).end()
   }
+})
+
+router.get('/', logged, (req,res) =>{
+  if (res.locals?.error) res.send({error: res.locals.error})
+  else res.send(res.locals.decoded) //here should get all populated notes and be sent
 })
 
 export default router

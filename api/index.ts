@@ -4,6 +4,7 @@ import login from './routes/login'
 import cors from 'cors'
 import dotenv from 'dotenv'
 import connectDB from './db/mongo'
+import cookieParser from 'cookie-parser'
 
 dotenv.config()
 const app = express()
@@ -18,6 +19,7 @@ connectDB
   .then(res => console.log('Succesfully connected to DB'))
   .catch(console.log)
 
+app.use(cookieParser())
 app.use(express.json())
 app.use(cors(corsOptions))
 app.use('/register', register)

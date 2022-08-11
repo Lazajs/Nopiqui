@@ -36,8 +36,7 @@ export default function Login () {
         const dataResponse = await response.json()
         if (response.ok) {
           navigate('/')
-          console.log(response.headers)
-          console.log(dataResponse)
+          // heres where user info..
         } else {
           setInvalid({is: true, comment: dataResponse.message})
         }
