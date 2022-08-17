@@ -1,11 +1,20 @@
 import React from 'react'
 import 'styles/Header.scss'
 
-export default function Header () {
+type Props = {
+  children?: JSX.Element
+}
+
+export default function Header ({children}: Props) {
   return (
+  <>
+
+    {children !== undefined ? children : ''}
+
     <header className='header'>
       <h1>Nopiqui</h1>
-      <small>your notes, in the minimalist way .</small>
+      <small>your notes, in a minimalist way .</small>
     </header>
+  </>
   )
 }

@@ -1,0 +1,73 @@
+.container {
+  margin-top: -5rem;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  font-family: 'Assistant';
+  align-items: center;
+  width: 100vw;
+ 
+  a {
+    color: #000;
+    text-decoration: none;
+  }
+
+  .image {
+    opacity: .15;
+    height: 35rem;
+  }
+
+  .action {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+  
+    h3 {
+      font-size: 2.2rem;
+      width: 15rem;
+    }
+
+    b {
+      font-size: 3rem;
+      margin: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    button {
+      font-weight: 700;
+      width: fit-content;
+      font-size: 2rem;
+      padding: 1.5rem 6rem;
+      border: 1px solid black;
+      outline: none;
+      background: #FFF4C5;
+      display: block;
+      cursor: pointer;
+      transition: all .2s;
+      z-index: 5;
+      
+      &:hover { 
+        transform: scale(1.3);
+      }
+    }  
+  }
+}
+
+@media (min-width: 1023px) {
+  .container {
+    flex-direction: row;
+    justify-content: center;
+
+    .image {
+      width: 38vw;
+      height: auto;
+    }
+
+    .action {
+      margin-left: 30rem;
+      width: fit-content;
+    }
+  }
+}

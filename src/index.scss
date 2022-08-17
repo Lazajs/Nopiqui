@@ -7,13 +7,20 @@
 
 html {
     font-size: 62.5%;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
 }
 
 body {
     font-size: 16px;
     font-size: 1.6rem;
     line-height: 1.5;
-    background-color: #F3E5AB;
+    background-color: #F5F5F5;
+}
+
+*::selection {
+    color: #000;
+    background-color: #FFF4C5;
 }
 
 @font-face {

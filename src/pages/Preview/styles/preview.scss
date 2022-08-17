@@ -1,0 +1,27 @@
+.sat {
+  width: 100vw;
+  opacity: .15;
+  display: block;
+  margin: auto;
+}
+
+.foot {
+  width: 100vw;
+  text-align: center;
+  font-family: 'Assistant';
+  margin-bottom: 2rem;
+  
+  a {
+    color: #000;
+    font-weight: 700;
+  }
+}
+
+
+
+@media (min-width: 1023px) {
+  .sat {
+    height: 30vh;
+    width: 50%;
+  }
+}

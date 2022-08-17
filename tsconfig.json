@@ -21,7 +21,5 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": [
-    "src"
-, "src/api/app.js"  ]
+  "include": ["src", "src/components", "./custom.d.ts"]
 }

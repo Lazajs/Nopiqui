@@ -1,0 +1,96 @@
+.pricing {
+  text-align: center;
+  font-family: 'Assistant';
+
+  h2 {
+    font-family: 'Bad Script';
+    font-weight: 600;
+    font-size: 2.8rem;
+    margin-top: 1rem;
+    margin-bottom: 3rem;
+  }
+
+  p {
+    i {
+      font-family: 'Bad Script';
+      font-weight: 600;
+    }
+
+    span {
+      text-decoration: underline;
+    }
+  }
+
+  .contact {
+    display: flex;
+    flex-direction: column;
+    background-color: #FFF4C5;
+    padding: 1rem;
+    height: 30rem;
+    justify-content: space-around;
+    align-items: center;
+    margin: 3rem 0;
+    border-radius: 10px;
+
+    input, textarea, button {
+      height: 5rem;
+      padding: 1rem;
+      height: 5rem;
+      width: 95%;
+      border: none;
+      font-family: 'Assistant';
+      background-color: #ECECEC;
+      outline: none;
+      font-size: 1.8rem;
+
+      &:hover {
+        background-color: #fff;
+      }
+
+      &::placeholder {
+        opacity: .5;
+      }
+    }
+
+    textarea {
+      height: 12rem;
+      resize: none;
+    }
+
+    button {
+      border: 1px solid #fff;
+      padding: 0;
+      height: 5rem;
+      font-weight: 700;
+      color: #FFF4C5;
+      background-color: #6c6c6c;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #414141;
+      }
+    }
+  }
+}
+
+@media (min-width: 1023px) {
+  .pricing {
+    h2 {
+      font-size: 3.2rem;
+    }
+
+    p {
+      font-size: 2rem;
+    }
+
+    .contact {
+      width: 80%;
+      margin: 3rem auto;
+      height: 35rem;
+
+      input, textarea, button {
+        width: 60%;
+      }
+    }
+  }
+}
