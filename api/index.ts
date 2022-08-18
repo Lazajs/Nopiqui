@@ -1,10 +1,12 @@
 import express from "express"
 import register from './routes/register'
 import login from './routes/login'
+import contact from './routes/contact'
 import cors from 'cors'
 import dotenv from 'dotenv'
 import connectDB from './db/mongo'
 import cookieParser from 'cookie-parser'
+
 
 dotenv.config()
 const app = express()
@@ -24,6 +26,8 @@ app.use(express.json())
 app.use(cors(corsOptions))
 app.use('/register', register)
 app.use('/login', login)
+app.use('/contact', contact)
+
 
 app.post('/', (req, res) => {
   console.log(req.header)

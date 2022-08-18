@@ -1,13 +1,37 @@
 import 'pages/Preview/styles/Pricing.scss'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import useSendMessage from 'hooks/useSendMessage'
+
+type Invalid = {
+  type: 'email' | 'text' | 'success' | 'unsuccess' | undefined,
+  message: string
+}
 
 export default function Pricing () {
   const [email, setEmail] = useState<string>('')
   const [text, setText] = useState<string>('')
+  const [invalid, setInvalid] = useState<Invalid>()
+  const [success, setSuccess] = useState<boolean>(false)
+  const send = useSendMessage()
+
+  useEffect(() =>{
+    if (success) {
+      setInvalid({type: undefined, message: ''})
+      setText('')
+      setEmail('')
+    }
+  }, [success])
 
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault()
-    //magic, send the email
+    if (email.length <= 0 || !email.includes('@') || !email.includes('.')) setInvalid({type: 'email', message: 'Your email is invalid.'})
+    else if (text.length <= 0) setInvalid({message: 'Please, enter a message', type:'text'})
+    else if (text.length > 0 && email.length > 0 && email.includes('@') && email.includes('.')) {
+      send({email,text})
+        .then(res => res.ok ? setSuccess(true) : res.json())
+        .then(res => setInvalid({type: 'unsuccess', message: res.message}))
+        .catch(console.log)
+    }
   }
 
   return (
@@ -17,10 +41,13 @@ export default function Pricing () {
       <p>Want to <span>contact us</span> anyway?</p>
       <form onSubmit={handleSubmit} className="contact">
         <input value={email} onChange={({target})=> setEmail(target.value)} type="email" placeholder="your@email.com" />
+        {invalid?.type === 'email' ? <p className='invalid'>{invalid.message}</p> : ''}
         <textarea value={text} onChange={({target})=> setText(target.value)} placeholder="Your message"></textarea>
-        <button>Get in touch</button>
+        {invalid?.type === 'text' ? <p className='invalid'>{invalid.message}</p> : ''}
+        {!success ? <button>Get in touch</button> : ''}
+        {success ? <p className='success'>Success! Your message has been sent</p> : ''}
+        {invalid?.type === 'unsuccess' ? <p className='invalid'>{invalid.message}</p> : ''}
       </form>
-
     </article>
   )
 }
