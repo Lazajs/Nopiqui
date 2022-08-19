@@ -2,11 +2,12 @@ import express from "express"
 import register from './routes/register'
 import login from './routes/login'
 import contact from './routes/contact'
+import notes from './routes/notes'
 import cors from 'cors'
 import dotenv from 'dotenv'
 import connectDB from './db/mongo'
 import cookieParser from 'cookie-parser'
-
+import logged from './routes/middlewares/logged'
 
 dotenv.config()
 const app = express()
@@ -27,11 +28,11 @@ app.use(cors(corsOptions))
 app.use('/register', register)
 app.use('/login', login)
 app.use('/contact', contact)
+app.use('/notes', notes)
 
-
-app.post('/', (req, res) => {
+app.get('/' , logged, (req, res) => {
   console.log(req.header)
-  res.status(200).end()
+  res.status(200).send(res.locals.decoded).end()
 })
 
 app.listen(process.env.APP_PORT, ()=> console.log('listening'))

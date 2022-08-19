@@ -25,7 +25,7 @@ router.post('/', async (req,res)=>{
     if (match) {
       const DataToJWT = {id: UserDBData._id, username: UserDBData.username}
       const token = jwt.sign(DataToJWT, process.env.JWT_SECRET as string, { expiresIn: process.env.JWT_EXPIRES })
-      console.log(token)
+      
       const DataToSend = {
         username: UserDBData.username,
         notes: [] //send real notes afterwards
@@ -42,8 +42,7 @@ router.post('/', async (req,res)=>{
 })
 
 router.get('/', logged, (req,res) =>{
-  if (res.locals?.error) res.send({error: res.locals.error})
-  else res.send(res.locals.decoded) //here should get all populated notes and be sent
+  res.status(200).send(res.locals.decoded) //here should get all populated notes and be sen
 })
 
 export default router
