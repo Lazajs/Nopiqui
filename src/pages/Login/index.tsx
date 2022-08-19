@@ -1,33 +1,20 @@
-import React,{useEffect, useReducer, useState} from 'react'
-import Header from 'components/Header'
 import 'styles/Form.scss'
-import {RegisterDTFormData, RegisterDT} from 'types'
+import React,{useEffect, useState} from 'react'
+import Header from 'components/Header'
+import {RegisterDTFormData} from 'types'
 import {Link, useNavigate} from 'react-router-dom'
-import useLoginUser from 'hooks/useLoginUser'
+import useLoginUser from 'pages/Login/hooks/useLoginUser'
+import useForm from './hooks/useForm'
 
-type ActionType = {type: 'username' | 'password', payload: string}
 type InvalidateType = {is: boolean, comment: string}
 
-function reducer (state: RegisterDT, action: ActionType) {
-  const {type, payload} = action
-
-  switch (type) {
-    case 'username':
-      return {...state, username: payload}
-    case 'password':
-      return {...state, password: payload}
-    default:
-      return state
-  }
-}
-
 export default function Login () {
-  const navigate = useNavigate()
-  const [loginInfo, dispatch] = useReducer(reducer, {username: '', password: ''})
-  const [allFormData, setAllFormData] = useState<RegisterDTFormData>()
-  const login = useLoginUser()
+  const [loginInfo, dispatch] = useForm()
   const { username, password } = loginInfo
+  const [allFormData, setAllFormData] = useState<RegisterDTFormData>()
   const [isInvalid, setInvalid] = useState<InvalidateType>({is: false, comment: ''})
+  const navigate = useNavigate()
+  const login = useLoginUser()
   
   useEffect(()=>{
     if (allFormData !== undefined && Boolean(allFormData.password) === true && Boolean(allFormData.username) === true) {
@@ -35,8 +22,7 @@ export default function Login () {
         const response = await login(allFormData)
         const dataResponse = await response.json()
         if (response.ok) {
-          navigate('/')
-          // heres where user info..
+          navigate(`/home/${dataResponse.username}`)
         } else {
           setInvalid({is: true, comment: dataResponse.message})
         }
@@ -60,6 +46,7 @@ export default function Login () {
     <section className='wrapper'>
       <Header />
       <form onSubmit={handleSubmit} className='login'>
+        <small>Log In to continue</small>
         <input onChange={({target})=> dispatch({type: 'username', payload: target.value})} value={username} name='username' placeholder='Username' type='text' />
         <input onChange={({target})=> dispatch({type: 'password', payload: target.value})} value={password} name='password' placeholder='Password' type='password' />
         {isInvalid.is ? <p className='invalid'>{isInvalid.comment}</p> : '' }

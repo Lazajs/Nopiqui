@@ -46,9 +46,16 @@
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  margin-top: 24.5rem;
+  margin-top: 10rem;
   opacity: 1;
   animation: appear 1s linear;
+
+  small {
+    font-family: 'Assistant';
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #0006;
+  }
 
   input {
     border: none;

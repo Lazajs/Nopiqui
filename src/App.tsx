@@ -1,22 +1,33 @@
 import './App.scss'
-import { Routes, Route, BrowserRouter } from 'react-router-dom'
 import Login from 'pages/Login'
 import Register from 'pages/Register'
-import useSession from 'hooks/useSession'
 import Preview from 'pages/Preview'
+import Home from 'pages/Home' 
+import { Routes, Route, useNavigate } from 'react-router-dom'
+import { useContext, useEffect } from 'react'
+import { UserCTX } from 'context/User'
+import {DataForUser} from 'types'
 
 function App () {
-  // const {user} = useSession()
+  const navigate = useNavigate()
+  const user = useContext(UserCTX) as DataForUser
   
+  useEffect(()=>{
+    if (user?.error !== undefined && Boolean(user?.error)) navigate('/login')
+    else if (user !== undefined && user.username !== undefined) {
+      navigate(`/home/${user.username}`)
+    }
+  },[user])
+
   return (
     <>
-    <BrowserRouter>
       <Routes>
-      <Route path='/' element={<Preview />} />
-        {/* <Route path='/login' element={<Login />} /> */}
-        {/* <Route path='/register' element={<Register />} /> */}
+        <Route path='/' element={<Preview />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/register' element={<Register />} />
+        <Route path='/home/:user' element={<Home />} />
+        {/* <Route path='/notes/:user/:id' element={//} /> */}
       </Routes>
-    </BrowserRouter>
     </>
   )
 }

@@ -16,7 +16,9 @@ export interface LoginDT {
 
 export interface DataForUser {
   username: string,
-  notes: Array<null>
+  notes: Array<null>,
+  error?: string
 }
 
+export type Error = {error: string, username: any, notes: any}
 export type JWT = {jwt: string}

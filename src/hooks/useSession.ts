@@ -1,8 +1,8 @@
-import React, {useState, useEffect} from "react";
-import { DataForUser } from "types";
+import {useState, useEffect} from "react";
+import { DataForUser, Error } from "types";
 
 export default function useSession () {
-  const [user, setUser] = useState<DataForUser>()
+  const [user, setUser] = useState<DataForUser | Error>()
 
   useEffect(()=>{
     const request = async () => {
@@ -11,15 +11,16 @@ export default function useSession () {
         credentials: 'include'
       } as RequestInit
 
-    const send = await fetch('http://127.0.0.1:3001/login', OPTIONS)
+    const send = await fetch('http://127.0.0.1:3001/', OPTIONS)
     const json = await send.json()
+
     if (json?.error !== undefined) {
-      console.log(json.error)
+      setUser({error: json.error, username:undefined, notes: undefined})
     } else setUser(json)
   }
 
-    request()
-      .catch(console.log)
+  request()
+    .catch(console.log)
 
   },[])
 

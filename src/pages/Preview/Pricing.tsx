@@ -1,6 +1,6 @@
 import 'pages/Preview/styles/Pricing.scss'
 import React, { useEffect, useState } from 'react'
-import useSendMessage from 'hooks/useSendMessage'
+import useSendMessage from 'pages/Preview/hooks/useSendMessage'
 
 type Invalid = {
   type: 'email' | 'text' | 'success' | 'unsuccess' | undefined,
