@@ -18,5 +18,9 @@
           }
       ]
   },
-  "ignorePatterns": ["src/**/*.test.ts", "src/frontend/generated/*"]
+  "ignorePatterns": ["src/**/*.test.ts", "src/frontend/generated/*"],
+  "env": {
+    "browser": true,
+    "jest": true
+  }
 }
