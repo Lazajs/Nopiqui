@@ -5,12 +5,15 @@ import Mission from 'pages/Preview/Mission'
 import sit from 'assets/images/sit-person.jpg'
 import Pricing from 'pages/Preview/Pricing'
 import Nav from 'components/Nav'
+import NavList from 'pages/Preview/NavList'
 
 export default function Preview () {
   return (
     <>
       <Header>
-        <Nav/>
+        <Nav>
+          <NavList />
+        </Nav>
       </Header>
       <Main />
       <Mission />

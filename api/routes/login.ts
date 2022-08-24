@@ -2,10 +2,10 @@ import {Router} from 'express'
 import jwt from 'jsonwebtoken'
 import User from '../db/models/User'
 import bcrypt from 'bcrypt'
-import { UserData } from 'types'
 import dotenv from 'dotenv'
 import dayjs from 'dayjs'
 import logged from './middlewares/logged'
+import {UserData} from '../types'
 
 dotenv.config()
 const router = Router()

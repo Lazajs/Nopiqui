@@ -1,7 +1,17 @@
+import './styles/index.scss'
+import Nav from "components/Nav"
+import NavHome from "./NavHome"
+import NotesSection from "./NotesSection"
+
 export default function Home () {
+  // should get Note[] from context
+
   return (
-    <>
-    <h2>WIP</h2>
-    </>
+    <div className='home'>
+      <Nav>
+       <NavHome />
+      </Nav>
+      <NotesSection />
+    </div>
   )
 }

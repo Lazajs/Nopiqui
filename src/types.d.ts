@@ -20,5 +20,10 @@ export interface DataForUser {
   error?: string
 }
 
+export interface NoteType {
+  title: string,
+  content?: string
+}
+
 export type Error = {error: string, username: any, notes: any}
 export type JWT = {jwt: string}

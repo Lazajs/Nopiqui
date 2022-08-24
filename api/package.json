@@ -39,7 +39,7 @@
     "ts-standard": "11.0.0",
     "typescript": "4.7.4"
   },
-  "jest" : {
-    "testEnvironment" : "node"
+  "jest": {
+    "testEnvironment": "node"
   }
 }

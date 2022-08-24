@@ -1,0 +1,22 @@
+a {
+  text-decoration: none;
+  color: black;
+}
+.new {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    width: 4rem;
+    opacity: .35;
+    margin-right: .5rem;
+  }
+  
+  p {
+    opacity: .35;
+    text-align: center;
+    margin-left: .5rem;
+  }
+
+}
