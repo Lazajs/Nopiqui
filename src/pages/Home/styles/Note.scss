@@ -5,7 +5,42 @@
   font-family: 'Assistant';
   width: 98vw;
   height: 8rem;
-  
+  position: relative; 
+
+  .option {
+    width: 3.2rem;
+    position: absolute;
+    right: 1rem;
+    top: 20%;
+    transform: translateY(-50%);
+  }
+
+  .options-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    position: absolute;
+    right: 5rem;
+    top: 50%; 
+    transform: translateY(-50%);
+    background-color: #FFF4C5;
+    text-align: center;
+    width: fit-content;
+    padding: 1rem;
+
+    p {
+      width: 100%;
+      height: 100%;
+      font-weight: 700;
+      padding: 1rem;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #e6dbae;
+      }
+    }
+  }
+
   .content {
     opacity: .5;
     margin:.5rem 1.5rem;
