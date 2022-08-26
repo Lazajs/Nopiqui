@@ -4,7 +4,6 @@ import NavHome from "./NavHome"
 import NotesSection from "./NotesSection"
 
 export default function Home () {
-
   return (
     <div className='home'>
       <Nav>

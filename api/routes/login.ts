@@ -24,21 +24,18 @@ router.post('/', async (req,res)=>{
     const match = await bcrypt.compare(password, passwordHash)
 
     if (match) {
-      const userPopulated = await User.findOne({username, passwordHash}).populate('notes') as any
+      const userPopulated = await User.findOne({username, passwordHash}).populate('notes') 
       
       const DataToJWT = {id: UserDBData.id, username: UserDBData.username}
       const token = jwt.sign(DataToJWT, process.env.JWT_SECRET as string, { expiresIn: process.env.JWT_EXPIRES })
 
-      console.log(' el userdb data es:', userPopulated)
-
-      const DataToSend = { ...userPopulated }
 
       res.cookie('token', JSON.stringify(token), {
         httpOnly: true,
         expires: dayjs().add(1, "days").toDate(),
         sameSite: 'none',
         secure: true
-      }).header('Access-Control-Allow-Credentials', 'true').status(200).send(DataToSend).end()
+      }).header('Access-Control-Allow-Credentials', 'true').status(200).send(userPopulated).end()
     } else res.status(400).send({message: 'Invalid password'}).end()
   }
 })
