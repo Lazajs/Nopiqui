@@ -1,4 +1,6 @@
 import { Router } from "express";
+import notesModel from '../db/models/Note'
+
 
 const router = Router()
 

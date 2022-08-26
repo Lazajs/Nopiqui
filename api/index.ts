@@ -1,16 +1,16 @@
 import express from 'express'
+import connectDB from './db/mongo'
 import register from './routes/register'
 import login from './routes/login'
 import contact from './routes/contact'
 import notes from './routes/notes'
 import logout from './routes/logout'
 import logged from './routes/middlewares/logged'
+import populate from './routes/middlewares/populate'
 import cors from 'cors'
 import dotenv from 'dotenv'
-import connectDB from './db/mongo'
 import cookieParser from 'cookie-parser'
-
-// import path from 'path'
+import './db/models/Note'
 
 dotenv.config()
 const app = express()
@@ -34,14 +34,12 @@ app.use('/contact', contact)
 app.use('/notes', notes)
 app.use('/logout', logout)
 
-// const publicPath = path.join(__dirname, '..', 'public')
-// app.use(express.static(path.join(__dirname, '../build')))
-// app.get('*', (req, res) => {
-//     res.sendFile(path.join(publicPath, 'index.html'));
-// });
 
-app.get('/' , logged, (req, res) => {
-res.status(200).send(res.locals.decoded).end()
+app.get('/' , logged, populate, (req, res) => {
+  const populated = res.locals?.populated
+  if (populated) {
+    res.status(200).send(populated).end()
+  } else res.status(401).send({ error: 'Session expired. Please Log In to continue' })
 })
 
 app.listen(process.env.PORT || 3001, ()=> console.log('listening'))

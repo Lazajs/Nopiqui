@@ -12,13 +12,15 @@ function App () {
   const navigate = useNavigate()
   const location = useLocation()
   const user = useContext(UserCTX) as DataForUser
-  
+
   useEffect(()=>{
     if (user?.error !== undefined && Boolean(user?.error)){
       navigate(location.pathname === '/' ? '/' : location.pathname === '/register' ? '/register' : '/login')
     } else if (user !== undefined && user.username !== undefined) {
       navigate(`/home/${user.username}`)
     }
+
+    console.log(user)
   },[user])
 
   return (

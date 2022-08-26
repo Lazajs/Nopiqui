@@ -1,14 +1,13 @@
 import {createContext} from "react";
-import {DataForUser} from 'types'
+import {UserLogged} from 'types'
 import useSession from 'hooks/useSession'
 
 type Props = {children: JSX.Element}
 
-const UserCTX = createContext({username:'', notes:[]} as DataForUser | undefined )
+const UserCTX = createContext({username:'', id: '',notes:[], archive: []} as UserLogged | undefined)
 
 export default function UserProvider ({children}: Props) {
   const {user} = useSession()
-  // const [info, setInfo] = useState<DataForUser | undefined>()
 
   return (
     <UserCTX.Provider value={user}>

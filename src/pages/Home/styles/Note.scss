@@ -6,6 +6,7 @@
   width: 98vw;
   height: 8rem;
   position: relative; 
+  cursor: pointer;
 
   .option {
     width: 3.2rem;
@@ -44,5 +45,21 @@
   .content {
     opacity: .5;
     margin:.5rem 1.5rem;
+  }
+}
+
+@media (min-width: 1023px) {
+ .box {
+    width: 100%;
+    height: 20rem;
+    
+    .option {
+      top: 10%
+    }
+
+    .options-box {
+      right: 2.4rem;
+      top: 40%;
+    }
   }
 }

@@ -47,7 +47,7 @@ export default function Login () {
       <Header />
       <form onSubmit={handleSubmit} className='login'>
         <small>Log In to continue</small>
-        <input onChange={({target})=> dispatch({type: 'username', payload: target.value})} value={username} name='username' placeholder='Username' type='text' />
+        <input autoFocus onChange={({target})=> dispatch({type: 'username', payload: target.value})} value={username} name='username' placeholder='Username' type='text' />
         <input onChange={({target})=> dispatch({type: 'password', payload: target.value})} value={password} name='password' placeholder='Password' type='password' />
         {isInvalid.is ? <p className='invalid'>{isInvalid.comment}</p> : '' }
         <button type='submit'>Log In</button>

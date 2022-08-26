@@ -1,11 +1,12 @@
 import {Router} from 'express'
 import jwt from 'jsonwebtoken'
-import User from '../db/models/User'
 import bcrypt from 'bcrypt'
 import dotenv from 'dotenv'
 import dayjs from 'dayjs'
 import logged from './middlewares/logged'
 import {UserData} from '../types'
+import '../db/models/Note'
+import User from '../db/models/User'
 
 dotenv.config()
 const router = Router()
@@ -14,8 +15,8 @@ router.post('/', async (req,res)=>{
   const data = {...req.body}
   const {password, username} = data
   const UserDBData: UserData | null = await User.findOne({username})
-// .populate('notes')
-  
+
+
   if (!UserDBData || UserDBData.passwordHash === undefined) {
     res.status(404).send({message: 'Username not found'}).end()
   } else {
@@ -23,13 +24,14 @@ router.post('/', async (req,res)=>{
     const match = await bcrypt.compare(password, passwordHash)
 
     if (match) {
-      const DataToJWT = {id: UserDBData._id, username: UserDBData.username}
-      const token = jwt.sign(DataToJWT, process.env.JWT_SECRET as string, { expiresIn: process.env.JWT_EXPIRES })
+      const userPopulated = await User.findOne({username, passwordHash}).populate('notes') as any
       
-      const DataToSend = {
-        username: UserDBData.username,
-        notes: [] //send real notes afterwards
-      }
+      const DataToJWT = {id: UserDBData.id, username: UserDBData.username}
+      const token = jwt.sign(DataToJWT, process.env.JWT_SECRET as string, { expiresIn: process.env.JWT_EXPIRES })
+
+      console.log(' el userdb data es:', userPopulated)
+
+      const DataToSend = { ...userPopulated }
 
       res.cookie('token', JSON.stringify(token), {
         httpOnly: true,
@@ -41,7 +43,7 @@ router.post('/', async (req,res)=>{
   }
 })
 
-router.get('/', logged, (req,res) =>{
+router.get('/', logged, async (req,res) =>{
   res.status(200).send(res.locals.decoded) //here should get all populated notes and be sen
 })
 

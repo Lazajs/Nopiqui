@@ -9,9 +9,7 @@ const logged: RequestHandler = async (req, res, next) => {
   
   const {token} = req.cookies
   if (token) {
-    
     const decoded = jwt.verify(JSON.parse(token), process.env.JWT_SECRET as string)
-    console.log(decoded)
     res.locals.decoded = decoded 
     next()
 

@@ -23,7 +23,15 @@ export interface DataForUser {
 export interface NoteType {
   title: string,
   content?: string
+  // id: string
 }
 
-export type Error = {error: string, username: any, notes: any}
+export interface UserLogged {
+  username: string,
+  notes: NoteType[] | Array,
+  archive: NoteType[] | Array,
+  id: string
+}
+
+export type Error = {error: string, username: any, notes: any, archive: any, id: any}
 export type JWT = {jwt: string}
