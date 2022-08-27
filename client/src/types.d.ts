@@ -23,7 +23,7 @@ export interface DataForUser {
 export interface NoteType {
   title: string,
   content?: string
-  // id: string
+  id: string
 }
 
 export interface UserLogged {

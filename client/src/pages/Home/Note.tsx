@@ -1,4 +1,3 @@
-
 import {NoteType} from 'types'
 import './styles/Note.scss'
 import { useNavigate } from 'react-router-dom'
@@ -6,7 +5,7 @@ import dots from 'assets/images/dots.svg'
 import React, { useState } from 'react'
 
 type Elements = HTMLImageElement | HTMLElement
-export default function Note ({title, content} : NoteType) {
+export default function Note ({title, content, id} : NoteType) {
   const navigate = useNavigate()
   const [options, toggleOptions] = useState<boolean>(false)
 
@@ -38,6 +37,7 @@ export default function Note ({title, content} : NoteType) {
           <div className='options-box'>
             <p className='single'>Delete</p>
             <p className='single'>Archive</p>
+            <p className='single'>Edit</p>
           </div>
                   : ''
         }
