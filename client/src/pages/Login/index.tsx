@@ -2,7 +2,7 @@ import 'styles/Form.scss'
 import React,{useEffect, useState, useContext} from 'react'
 import Header from 'components/Header'
 import {RegisterDTFormData, UserLogged} from 'types'
-import {Link, useNavigate} from 'react-router-dom'
+import {Link, useLocation, useNavigate} from 'react-router-dom'
 import useLoginUser from 'pages/Login/hooks/useLoginUser'
 import useForm from './hooks/useForm'
 import { UserRecentLoggedCTX } from 'context/UserRecentLogged'
@@ -14,6 +14,12 @@ type LogUser = {
   setLogged: React.Dispatch<React.SetStateAction<UserLogged>>
 }
 
+type LocationState = {
+  state: {
+    from?: string
+  }
+}
+
 export default function Login () {
   const {logged, setLogged} = useContext(UserRecentLoggedCTX) as LogUser
   const [loginInfo, dispatch] = useForm()
@@ -22,6 +28,8 @@ export default function Login () {
   const [isInvalid, setInvalid] = useState<InvalidateType>({is: false, comment: ''})
   const navigate = useNavigate()
   const login = useLoginUser() 
+  const location = useLocation()
+  const {state} = location as LocationState
 
   useEffect(()=>{
     if (allFormData !== undefined && Boolean(allFormData.password) === true && Boolean(allFormData.username) === true) {
@@ -40,7 +48,6 @@ export default function Login () {
     }
   },[allFormData])
 
-
   const handleSubmit = (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault()
     const {target} = e
@@ -54,7 +61,7 @@ export default function Login () {
     <section className='wrapper'>
       <Header />
       <form onSubmit={handleSubmit} className='login'>
-        <small>Log In to continue</small>
+        {state?.from === '/register' ? <small>Welcome! Log In to continue</small> : ''}
         <input autoFocus onChange={({target})=> dispatch({type: 'username', payload: target.value})} value={username} name='username' placeholder='Username' type='text' />
         <input onChange={({target})=> dispatch({type: 'password', payload: target.value})} value={password} name='password' placeholder='Password' type='password' />
         {isInvalid.is ? <p className='invalid'>{isInvalid.comment}</p> : '' }

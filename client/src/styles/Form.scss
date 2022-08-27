@@ -83,6 +83,11 @@
     color: #fff;
     background-color: #000;
     margin: 1rem;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #222;
+    }
   }
 
   p {

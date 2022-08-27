@@ -22,7 +22,7 @@ const corsOptions = {
 
 connectDB
   .then(res => console.log('Succesfully connected to DB'))
-  .catch(console.log)
+  .catch(ConnectToDBError => console.log({ConnectToDBError}))
 
 app.use(cookieParser())
 app.use(express.json())

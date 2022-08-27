@@ -27,6 +27,7 @@
     .woman {
       margin-left: -3rem;
       width: 45%;
+      aspect-ratio: 9/16;
     }
 
     ul {
@@ -60,6 +61,16 @@
 
 }
 
+@media (min-width: 600px)  {
+  .mission {
+
+    .intro {
+      text-align: center;
+      margin: auto;
+    } 
+  }
+}
+
 @media (min-width: 1023px) {
   .mission {
     width: 50vw;
@@ -73,10 +84,6 @@
     h2 {
       font-size: 3.2rem;
 
-    }
-
-    .intro {
-      text-align: center;
     }
 
     .data {

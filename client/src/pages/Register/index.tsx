@@ -16,12 +16,12 @@ export default function Register () {
   const [isInvalid, setInvalid] = useState<InvalidateType>({is: false, comment: ''})
   const register = useRegisterUser()
   const navigate = useNavigate()
-
+  
   useEffect(()=>{
     if (password !== confirmed) setInvalid({comment: "Passwords doesn't match.", is: true})
     else if (allFormData !== undefined && Boolean(username) === true && Boolean(password) === true && Boolean(confirmed) === true) {
       register(allFormData)
-      .then(res => res.ok ? navigate('/login') : res.json())
+      .then(res => res.ok ? navigate('/login', {state: {from : '/register'}}) : res.json())
       .then(res => res?.message !== undefined ? setInvalid({is:true, comment: res.message}) : '')
       .catch(console.log)
     }
