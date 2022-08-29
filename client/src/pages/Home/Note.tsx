@@ -8,7 +8,7 @@ type Elements = HTMLImageElement | HTMLElement
 export default function Note ({title, content, id} : NoteType) {
   const navigate = useNavigate()
   const [options, toggleOptions] = useState<boolean>(false)
-
+  
 
   const handleClick = (e: React.SyntheticEvent) =>{
     const target: Elements = e.target as Elements

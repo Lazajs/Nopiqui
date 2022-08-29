@@ -18,7 +18,6 @@ export default function NotesSection () {
   useEffect(()=> {
     if (user !== undefined && user?.notes !== undefined && user?.notes.length >= 1) {
       setIsLoad(user)
-      console.log(user.notes)
     } else if (logged !== undefined && logged?.notes !== undefined && logged?.notes.length >= 1) {
       setIsLoad(logged)
     } 

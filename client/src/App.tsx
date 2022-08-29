@@ -3,11 +3,13 @@ import Login from 'pages/Login'
 import Register from 'pages/Register'
 import Preview from 'pages/Preview'
 import Home from 'pages/Home' 
+import Create from 'pages/Create'
 import { Routes, Route, useNavigate, useLocation } from 'react-router-dom'
 import { useContext, useEffect } from 'react'
 import { UserCTX } from 'context/User'
 import { DataForUser } from 'types'
 import RecentLoggedProvider from 'context/UserRecentLogged'
+
 
 function App () {
   const navigate = useNavigate()
@@ -15,10 +17,11 @@ function App () {
   const user = useContext(UserCTX) as DataForUser 
 
   useEffect(()=>{
+    console.log(user)
     if (user?.error !== undefined && Boolean(user?.error)){
       navigate(location.pathname === '/' ? '/' : location.pathname === '/register' ? '/register' : '/login')
     } else if (user !== undefined && user.username !== undefined) {
-      navigate(`/home/${user.username}`)
+      navigate(`/home/${user.id}`)
     }
   },[user])
 
@@ -28,8 +31,8 @@ function App () {
         <Route path='/' element={<Preview />} />
         <Route path='/register' element={<Register />} />
         <Route path='/login' element={<Login />} />
-        <Route path='/home/:user' element={<Home />} />
-        {/* <Route path='/notes/:user/:id' element={//} /> */}
+        <Route path='/home/:userId' element={<Home />} />
+        <Route path='/home/:userId/create' element={<Create />} />
       </Routes>
     </RecentLoggedProvider>
   )

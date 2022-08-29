@@ -9,9 +9,9 @@ type Props = {
 
 export default function Add ({info}: Props) {
   //send to text editor
-  const {username} = info
+  const {id} = info
   return (
-    <Link to={`/home/${username}/create`}>
+    <Link to={`/home/${id}/create`}>
       <div className='new box'>
         <img alt='add note' src={plus} />
         <p>Add new...</p>

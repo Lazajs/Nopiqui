@@ -17,6 +17,7 @@ export interface LoginDT {
 export interface DataForUser {
   username: string,
   notes: Array<null>,
+  id: string,
   error?: string
 }
 
