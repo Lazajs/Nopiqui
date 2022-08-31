@@ -3,12 +3,20 @@ import './styles/Note.scss'
 import { useNavigate } from 'react-router-dom'
 import dots from 'assets/images/dots.svg'
 import React, { useState } from 'react'
+import useDeleteNote from './hooks/useDeleteNote'
 
 type Elements = HTMLImageElement | HTMLElement
 export default function Note ({title, content, id} : NoteType) {
-  const navigate = useNavigate()
   const [options, toggleOptions] = useState<boolean>(false)
+  const navigate = useNavigate()
+  const deleteNote = useDeleteNote()
+
   
+  const handleDelete = () => {
+    deleteNote({id})
+      .then(console.log)
+      .catch(console.log)
+  }
 
   const handleClick = (e: React.SyntheticEvent) =>{
     const target: Elements = e.target as Elements
@@ -35,7 +43,7 @@ export default function Note ({title, content, id} : NoteType) {
         {
           options ? 
           <div className='options-box'>
-            <p className='single'>Delete</p>
+            <p onClick={handleDelete} className='single'>Delete</p>
             <p className='single'>Archive</p>
             <p className='single'>Edit</p>
           </div>

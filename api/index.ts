@@ -27,7 +27,7 @@ connectDB
 app.use(cookieParser())
 app.use(express.json())
 app.use(cors(corsOptions))
-
+// default date is new Date().toLocaleDateString()
 app.use('/register', register)
 app.use('/login', login)
 app.use('/contact', contact)

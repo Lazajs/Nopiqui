@@ -10,18 +10,17 @@ import { UserCTX } from 'context/User'
 import { DataForUser } from 'types'
 import RecentLoggedProvider from 'context/UserRecentLogged'
 
-
 function App () {
   const navigate = useNavigate()
   const location = useLocation()
   const user = useContext(UserCTX) as DataForUser 
+  const notAllowedIfLogged = ['/', '/register', '/login']
 
   useEffect(()=>{
-    console.log(user)
     if (user?.error !== undefined && Boolean(user?.error)){
-      navigate(location.pathname === '/' ? '/' : location.pathname === '/register' ? '/register' : '/login')
+      navigate(notAllowedIfLogged.includes(location.pathname) ? location.pathname : '/login')
     } else if (user !== undefined && user.username !== undefined) {
-      navigate(`/home/${user.id}`)
+      navigate(notAllowedIfLogged.includes(location.pathname) ? `/home/${user.id}` : location.pathname)
     }
   },[user])
 

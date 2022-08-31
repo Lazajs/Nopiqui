@@ -15,13 +15,32 @@ export default function NotesSection () {
   const {logged} = useContext(UserRecentLoggedCTX) as LogUser
   const [isLoad, setIsLoad] = useState<UserLogged | DataForUser>()
 
+  const parseNotes = (user : any) => {
+    const {notes} = user
+    const parsedNotes = notes.map((e: any) => {
+      if (e.title.includes('blocks') !== true) return e
+      return {
+        archived: e.archived,
+        title: JSON.parse(e.title).blocks[0].text,
+        content: JSON.parse(e.content).blocks[0].text,
+        userId: e.userId,
+        id: e.id
+      }
+    })
+    const userInstance = user
+    console.log(userInstance)
+    userInstance.notes = parsedNotes as any
+    return userInstance
+  }
+
   useEffect(()=> {
-    if (user !== undefined && user?.notes !== undefined && user?.notes.length >= 1) {
-      setIsLoad(user)
-    } else if (logged !== undefined && logged?.notes !== undefined && logged?.notes.length >= 1) {
-      setIsLoad(logged)
-    } 
+    if (user !== undefined && user?.notes !== undefined && user?.id !== undefined) {
+      setIsLoad(parseNotes(user))
+    } else if (logged !== undefined && logged?.notes !== undefined && logged?.id !== undefined) {
+      setIsLoad(parseNotes(logged))
+    }
   },[user])
+  console.log(isLoad)
 
   return (
     <main className="main">
@@ -34,7 +53,7 @@ export default function NotesSection () {
         isLoad && isLoad?.notes.length <= 0 ? <p className="none">Your ideas will appear here, start creating!</p> : ''
       }
       {
-        isLoad !== undefined && <Add info={isLoad as UserLogged} />
+        isLoad !== undefined ? <Add info={isLoad as UserLogged} /> : ''
       }
     </main>
   )

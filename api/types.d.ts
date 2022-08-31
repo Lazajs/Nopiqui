@@ -1,6 +1,9 @@
 export interface NoteType {
   title: string,
-  content?: string
+  content?: string,
+  archived: boolean,
+  cration: string,
+  userId: string
 }
 
 export interface UserData {

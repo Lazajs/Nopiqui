@@ -1,6 +1,6 @@
 import React from 'react'
-import './styles/NavHome.scss'
-import useLogout from './hooks/useLogout'
+import 'styles/NavHome.scss'
+import useLogout from '../pages/Home/hooks/useLogout'
 import { useNavigate } from 'react-router-dom'
 
 export default function NavHome () {

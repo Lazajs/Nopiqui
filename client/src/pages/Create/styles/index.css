@@ -1,0 +1,81 @@
+body { overflow-x: hidden; }
+
+.edit-wrapper {
+  width: 96vw;
+  margin:auto;
+}
+
+.title.edit-wrapper {
+  margin-top: 7rem;
+}
+
+.content.edit-wrapper {
+  min-height: 40rem;
+}
+
+.edit-editor {
+  background-color: #fff;
+  padding: 2rem;
+
+}
+
+.title.edit-editor {
+  height: 100%;
+  font-size: 3rem;
+}
+
+.content.edit-editor {
+  min-height: inherit;
+}
+
+.edit-toolbar {
+  background-color: #fff;
+  height: max-content;
+  margin: 0;
+  padding: 1rem;
+}
+
+.rdw-dropdown-selectedtext, .rdw-dropdownoption-default {
+  background-color: #000;
+  color: white;
+  font-family: 'Assistant';
+  outline: none;
+  border: none;
+}
+
+.rdw-dropdown-selectedtext > img, .rdw-dropdownoption-default > img {
+  filter: invert();
+}
+
+.rdw-option-wrapper {
+  background-color: #000;
+  color: white;
+  font-family: 'Assistant';
+  outline: none;
+  border: none;
+  width:3.3rem;
+}
+
+.rdw-dropdown-selectedtext, .rdw-option-wrapper {
+  height: 3.3rem;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+.rdw-option-wrapper > img {
+  filter: invert();
+}
+
+.rdw-remove-wrapper, .rdw-link-wrapper, .rdw-colorpicker-wrapper, .rdw-fontfamily-wrapper, .rdw-fontsize-wrapper, .rdw-block-wrapper {
+  width: fit-content;
+  height: fit-content;
+}
+
+.title.edit-toolbar {
+  margin: auto;
+}
+
+.no-display-button {
+  display: none;
+  opacity: 0;
+}

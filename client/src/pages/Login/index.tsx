@@ -38,7 +38,7 @@ export default function Login () {
         const dataResponse = await response.json()
         if (response.ok) {
           setLogged(dataResponse)
-          navigate(`/home/${dataResponse.username}`)
+          navigate(`/home/${dataResponse.id}`)
         } else {
           setInvalid({is: true, comment: dataResponse.message})
         }
