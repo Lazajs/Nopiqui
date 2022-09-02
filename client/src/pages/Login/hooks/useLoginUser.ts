@@ -1,9 +1,9 @@
-import { RegisterDTFormData } from "types";
+import { UserLogInData } from "types";
 
 const PORT = 3001
 
 export default function useLoginUser () {
-  return async (data: RegisterDTFormData) => {
+  return async (data: UserLogInData) => {
   const OPTIONS = {
       method: 'POST',
       body: JSON.stringify(data),

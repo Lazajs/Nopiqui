@@ -5,7 +5,7 @@ import '../notes'
 const populate: RequestHandler = async (req, res, next) => {
   if (res.locals?.decoded !== undefined) {
     const decoded = res.locals.decoded
-    const populated = await UserModel.findOne({decoded}).populate('notes')
+    const populated = await UserModel.findById(decoded.id).populate('notes')
     res.locals.populated = populated
     next()
   } else {

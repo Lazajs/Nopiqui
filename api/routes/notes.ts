@@ -24,16 +24,15 @@ router.post('/create', logged, async (req,res) => {
   }
 })
 
-router.delete('/:noteId', logged, async (req,res) => {
+router.delete('/:noteId', logged, async (req, res) => {
   const {noteId} = req.params
   const isDeleted = await notesModel.findByIdAndDelete(noteId)
-   
+
   if (isDeleted && isDeleted.userId) {
     const owner: any = await UserModel.findById(isDeleted.userId)
 
-      const newOnes = owner.notes.filter((e: string) => {
-        console.log(e)
-        e !== `new ObjectId("${noteId}")`
+    const newOnes = owner.notes.filter((e: string) => {
+       return String(e) !== noteId
       })
 
       owner.notes = newOnes

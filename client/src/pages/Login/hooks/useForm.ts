@@ -1,9 +1,9 @@
 import { useReducer } from "react"
-import {RegisterDT} from 'types'
+import {UserLogInData} from 'types'
 
 type ActionType = {type: 'username' | 'password', payload: string}
 export default function useForm() {
-  function reducer (state: RegisterDT, action: ActionType) {
+  function reducer (state: UserLogInData, action: ActionType) {
   const {type, payload} = action
 
   switch (type) {

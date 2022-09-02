@@ -1,20 +1,34 @@
-import {NoteType} from 'types'
+import { NoteType, UserLogged} from 'types'
 import './styles/Note.scss'
 import { useNavigate } from 'react-router-dom'
 import dots from 'assets/images/dots.svg'
-import React, { useState } from 'react'
+import React, { Dispatch, SetStateAction, useState } from 'react'
 import useDeleteNote from './hooks/useDeleteNote'
 
 type Elements = HTMLImageElement | HTMLElement
-export default function Note ({title, content, id} : NoteType) {
+
+interface Props extends NoteType {
+  update: Dispatch<SetStateAction<any>>
+}
+
+export default function Note ({title, content, id, update} : Props) {
   const [options, toggleOptions] = useState<boolean>(false)
   const navigate = useNavigate()
   const deleteNote = useDeleteNote()
-
+  // const [isLoading, setIsLoading] = useState<boolean>(false)
   
   const handleDelete = () => {
     deleteNote({id})
-      .then(console.log)
+      .then(res => {
+        if (res.ok) {
+          update((prev: UserLogged) => {
+            const {notes} = prev
+            const newOnes = notes.filter((e: NoteType) => e.id !== id)
+
+            return {...prev, notes: newOnes}
+          })
+        }
+      })
       .catch(console.log)
   }
 
@@ -30,7 +44,6 @@ export default function Note ({title, content, id} : NoteType) {
       navigate('/home/:user/note/:id')
     }
   }
-
   return (
       <div onClick={handleClick} className='box'>
         <span className='title'>

@@ -5,27 +5,32 @@ import Preview from 'pages/Preview'
 import Home from 'pages/Home' 
 import Create from 'pages/Create'
 import { Routes, Route, useNavigate, useLocation } from 'react-router-dom'
-import { useContext, useEffect } from 'react'
-import { UserCTX } from 'context/User'
-import { DataForUser } from 'types'
-import RecentLoggedProvider from 'context/UserRecentLogged'
+import React, { useContext, useEffect } from 'react'
+import { UserRecentLoggedCTX } from 'context/UserRecentLogged'
+import { UserLogged } from 'types'
+
+type UserInformation = {
+  logged : UserLogged,
+  setLogged: React.Dispatch<React.SetStateAction<UserLogged>>
+}
 
 function App () {
   const navigate = useNavigate()
   const location = useLocation()
-  const user = useContext(UserCTX) as DataForUser 
+  const {logged, setLogged} = useContext(UserRecentLoggedCTX) as UserInformation
   const notAllowedIfLogged = ['/', '/register', '/login']
+  const {id} = logged
 
   useEffect(()=>{
-    if (user?.error !== undefined && Boolean(user?.error)){
+    if (logged?.error !== undefined && Boolean(logged?.error)){
       navigate(notAllowedIfLogged.includes(location.pathname) ? location.pathname : '/login')
-    } else if (user !== undefined && user.username !== undefined) {
-      navigate(notAllowedIfLogged.includes(location.pathname) ? `/home/${user.id}` : location.pathname)
+    } else if (logged !== undefined && logged.username !== '') {
+      navigate(notAllowedIfLogged.includes(location.pathname) ? `/home/${id}` : location.pathname)
     }
-  },[user])
+    console.log(logged)
+  },[logged])
 
   return (
-    <RecentLoggedProvider>
       <Routes>
         <Route path='/' element={<Preview />} />
         <Route path='/register' element={<Register />} />
@@ -33,7 +38,6 @@ function App () {
         <Route path='/home/:userId' element={<Home />} />
         <Route path='/home/:userId/create' element={<Create />} />
       </Routes>
-    </RecentLoggedProvider>
   )
 }
 

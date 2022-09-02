@@ -1,11 +1,9 @@
-import { RegisterDTFormData } from "types";
-// import dotenv from 'dotenv'
-// dotenv.config()
+import { UserLogInData } from "types";
 
 const PORT = 3001
 
 export default function useRegisterUser () {
-  return async (data: RegisterDTFormData) => {
+  return async (data: UserLogInData) => {
     const OPTIONS = {
       method: 'POST',
       body: JSON.stringify(data),

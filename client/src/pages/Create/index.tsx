@@ -5,10 +5,10 @@ import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import './styles/index.css'
 import Nav from 'components/Nav';
 import NavHome from 'components/NavHome';
-import { UserCTX } from 'context/User';
 import { UserRecentLoggedCTX } from 'context/UserRecentLogged';
-import {UserLogged} from 'types'
+import {NoteType, UserLogged} from 'types'
 import useCreate from './hooks/useCreate'
+import { Link } from 'react-router-dom';
 
 type LogUser = {
   logged: UserLogged,
@@ -21,17 +21,17 @@ type ErrorCase = {
 }
 
 export default function Create () {
-  const user = useContext(UserCTX)
   const {logged, setLogged} = useContext(UserRecentLoggedCTX) as LogUser
   const [titleState, setTitleState] = useState(()=> EditorState.createEmpty())
   const [editorState, setEditorState] = useState(()=> EditorState.createEmpty())
   const [isEmpty, setIsEmpty] = useState<ErrorCase>()
   const create = useCreate() 
+  const {id} = logged
 
   const handleSave = () => {
     const rawTitleString = JSON.stringify(convertToRaw(titleState.getCurrentContent()))
     const rawContentString = JSON.stringify(convertToRaw(editorState.getCurrentContent()))
-    const userId = user?.id === undefined ? logged?.id : user?.id
+    const {id} = logged   
     const title = JSON.parse(rawTitleString).blocks[0].text
       if (title.length > 20) {
         setIsEmpty({title: 'The title is too long.'})
@@ -40,8 +40,13 @@ export default function Create () {
         setIsEmpty({save: 'Title is required.'})
       } 
 
-      create({title: rawTitleString, content: rawContentString, userId: userId})
-        .then(console.log)
+      create({title: rawTitleString, content: rawContentString, userId: id})
+        .then((res: NoteType)=> {
+          setLogged(prev => {
+            const {notes} = prev
+            return {...prev, notes: notes.concat(res)}
+          })
+        }) 
         .catch(console.log)
   }
 
@@ -51,6 +56,9 @@ export default function Create () {
       <Nav>
         <NavHome />
       </Nav>
+
+      <Link to={`/home/${id}`}><button type='button'>GO BEFORE</button></Link>
+
       <Editor 
         toolbarOnFocus
         placeholder='Title'

@@ -1,11 +1,15 @@
 import { useReducer } from "react";
-import {RegisterDT} from 'types'
+import { UserLogInData } from 'types'
+
+interface UserRegisterData extends UserLogInData {
+  confirmed: FormDataEntryValue | null
+}
 
 type ActionType = {type: 'username' | 'password' | 'confirmed', payload: string}
 
 
 export default function useForm () {
-  function reducer (state: RegisterDT, action: ActionType) {
+  function reducer (state: UserRegisterData, action: ActionType) {
     switch (action.type) {
       case 'username':
         return {...state, username: action.payload}
