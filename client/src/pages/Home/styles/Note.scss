@@ -7,6 +7,7 @@
   height: 8rem;
   position: relative; 
   cursor: pointer;
+  overflow: hidden;
 
   .option {
     width: 3.2rem;
@@ -14,41 +15,39 @@
     right: 1rem;
     top: 20%;
     transform: translateY(-50%);
+    z-index: 20;
   
+  }
+
+  .title {
+    width: 50%;
+    overflow: hidden;
   }
 
   .options-box {
     display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    position: absolute;
-    right: 5rem;
-    top: 50%; 
-    transform: translateY(-50%);
     background-color: #FFF4C5;
-    text-align: center;
     width: fit-content;
-    padding: 1rem;
-    z-index: 20;
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding-right: 5rem;
 
-    p {
-      width: 100%;
-      height: 100%;
-      font-weight: 700;
-      padding: 1rem;
-      cursor: pointer;
-
-      &:hover {
-        background-color: #e6dbae;
-      }
+    .single {
+      margin: 1rem;
+      width: 3rem;
     }
   }
 
   .content {
+    margin-left: .5rem;
+    word-break: break-all;
     opacity: .5;
-    margin:.5rem 1.5rem;
+    
   }
 }
+
+
 
 @media (min-width: 1023px) {
  .box {
@@ -56,12 +55,10 @@
     height: 20rem;
     
     .option {
-      top: 10%
+      transform: rotate(90deg);
+      top: .5rem;
+      right: .2rem;
     }
 
-    .options-box {
-      right: 2.4rem;
-      top: 40%;
-    }
   }
 }

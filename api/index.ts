@@ -17,7 +17,7 @@ const app = express()
 
 const corsOptions = {
   credentials: true,
-  origin: ['http://localhost:3000', 'http://localhost:3001'],
+  origin: ['http://localhost:3000'],
 }
 
 connectDB
@@ -25,7 +25,7 @@ connectDB
   .catch(ConnectToDBError => console.log({ConnectToDBError}))
 
 app.use(cookieParser())
-app.use(express.json())
+app.use(express.json({limit: '50mb'}))
 app.use(cors(corsOptions))
 // default date is new Date().toLocaleDateString()
 app.use('/register', register)

@@ -22,7 +22,7 @@ router.post('/', async (req,res)=>{
   } else {
     const {passwordHash} = UserDBData
     const match = await bcrypt.compare(password, passwordHash)
-
+    
     if (match) {
       const userPopulated = await User.findOne({username, passwordHash}).populate('notes') 
       

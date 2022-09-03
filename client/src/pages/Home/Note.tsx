@@ -2,6 +2,9 @@ import { NoteType, UserLogged} from 'types'
 import './styles/Note.scss'
 import { useNavigate } from 'react-router-dom'
 import dots from 'assets/images/dots.svg'
+import edit from 'assets/images/edit.svg'
+import trash from 'assets/images/trash.svg'
+import archive from 'assets/images/archive.svg'
 import React, { Dispatch, SetStateAction, useState } from 'react'
 import useDeleteNote from './hooks/useDeleteNote'
 
@@ -41,7 +44,7 @@ export default function Note ({title, content, id, update} : Props) {
     } else if (target.classList.contains('single')) {
       return
     } else {
-      navigate('/home/:user/note/:id')
+      navigate('/home/:user/note/:id') //note view
     }
   }
   return (
@@ -52,13 +55,13 @@ export default function Note ({title, content, id, update} : Props) {
         <span className='content'>
           {content}
         </span>
-        <img src={dots} alt="Options" className='option' />
+        <img src={dots} title='Options' alt="Options" className='option' />
         {
           options ? 
           <div className='options-box'>
-            <p onClick={handleDelete} className='single'>Delete</p>
-            <p className='single'>Archive</p>
-            <p className='single'>Edit</p>
+            <img title='Delete' alt='trash' src={trash} className='single' onClick={handleDelete} />
+            <img title='Edit' alt='edit' src={edit} className='single' />
+            <img title='Archive' alt='archive' src={archive} className='single' />
           </div>
                   : ''
         }

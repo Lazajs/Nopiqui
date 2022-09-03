@@ -14,10 +14,18 @@ type UserInformation = {
   setLogged: React.Dispatch<React.SetStateAction<UserLogged>>
 }
 
+// Deberia agregar boton para archivar y desarchivar
+// fontsize comienza en 30 por alguna razon
+// el estilo del toolbar no me termina de convencer
+// USAR mismo componente para create y edit
+
+// PROBLEMAS GRAVES 
+// ser mas user friendly con la espera de resolucion de promesas, se ve todo muy poco dinamico
+
 function App () {
   const navigate = useNavigate()
   const location = useLocation()
-  const {logged, setLogged} = useContext(UserRecentLoggedCTX) as UserInformation
+  const {logged} = useContext(UserRecentLoggedCTX) as UserInformation
   const notAllowedIfLogged = ['/', '/register', '/login']
   const {id} = logged
 

@@ -8,7 +8,8 @@ import NavHome from 'components/NavHome';
 import { UserRecentLoggedCTX } from 'context/UserRecentLogged';
 import {NoteType, UserLogged} from 'types'
 import useCreate from './hooks/useCreate'
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import Spinner from 'components/Spinner';
 
 type LogUser = {
   logged: UserLogged,
@@ -25,39 +26,41 @@ export default function Create () {
   const [titleState, setTitleState] = useState(()=> EditorState.createEmpty())
   const [editorState, setEditorState] = useState(()=> EditorState.createEmpty())
   const [isEmpty, setIsEmpty] = useState<ErrorCase>()
+  const [isLoading, setIsLoading] = useState<boolean>(false)
+  const navigate = useNavigate()
   const create = useCreate() 
-  const {id} = logged
 
-  const handleSave = () => {
+  const handleSave = async () => {
     const rawTitleString = JSON.stringify(convertToRaw(titleState.getCurrentContent()))
     const rawContentString = JSON.stringify(convertToRaw(editorState.getCurrentContent()))
     const {id} = logged   
     const title = JSON.parse(rawTitleString).blocks[0].text
-      if (title.length > 20) {
-        setIsEmpty({title: 'The title is too long.'})
-        return
-      } else if (title === '') {
-        setIsEmpty({save: 'Title is required.'})
-      } 
+    if (title.length > 20) {
+      setIsEmpty({title: 'The title is too long (max: 20 char.)'})
+      return
+    } else if (title === '') {
+      setIsEmpty({save: 'Title is required.'})
+      return
+    } 
+    setIsLoading(true)
+      
 
-      create({title: rawTitleString, content: rawContentString, userId: id})
-        .then((res: NoteType)=> {
-          setLogged(prev => {
+     const res: NoteType = await create({title: rawTitleString, content: rawContentString, userId: id})
+        setLogged(prev => {
             const {notes} = prev
+            navigate(`/home/${id}`)
+            setIsLoading(false)
             return {...prev, notes: notes.concat(res)}
-          })
-        }) 
-        .catch(console.log)
+        })
   }
 
 
   return (
-    <>
+    <div className='page'>
       <Nav>
         <NavHome />
       </Nav>
 
-      <Link to={`/home/${id}`}><button type='button'>GO BEFORE</button></Link>
 
       <Editor 
         toolbarOnFocus
@@ -72,7 +75,8 @@ export default function Create () {
           fontFamily: {options: ['Assistant', 'Arial', 'Georgia', 'Impact', 'Tahoma', 'Times New Roman', 'Verdana', 'Bad Script']}
         }}
        />
-       {isEmpty?.title !== undefined ? <p>{isEmpty.title}</p> : ''}
+       {isEmpty?.title !== undefined ? <p className='save-error'>{isEmpty.title}</p> : ''}
+       {isEmpty?.save !== undefined ? <p className='save-error'>{isEmpty.save}</p> : ''}
 
       <Editor 
         toolbarOnFocus
@@ -91,8 +95,8 @@ export default function Create () {
         }}
        />
 
-      {isEmpty?.save !== undefined ? <p>{isEmpty.save}</p> : ''}
-      <button onClick={handleSave}>Save</button>
-    </>
+ 
+      {!isLoading ? <button className='save' onClick={handleSave} type='button'>SAVE</button> : <div className='loading'><Spinner /></div> }
+    </div>
   )
 }

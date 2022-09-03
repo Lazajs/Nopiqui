@@ -1,5 +1,9 @@
 body { overflow-x: hidden; }
 
+.page {
+  margin-bottom: 5rem;
+}
+
 .edit-wrapper {
   width: 96vw;
   margin:auto;
@@ -78,4 +82,37 @@ body { overflow-x: hidden; }
 .no-display-button {
   display: none;
   opacity: 0;
+}
+
+.save {
+  width: 20rem;
+  height: 8rem;
+  font-family: 'Bad Script';
+  font-weight: 700;
+  background-color: #FFF4C5;
+  border: none;
+  outline: none;
+  margin: auto;
+  display: block;
+  margin-top: 3rem;
+  cursor: pointer;
+}
+
+.spinner {
+  margin: auto;
+  margin-top: 3rem;
+}
+
+.save-error {
+  font-family: 'Assistant';
+  font-weight: 700;
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+  color: red;
+}
+
+
+.save:hover {
+  background-color: #ffed9f;
 }

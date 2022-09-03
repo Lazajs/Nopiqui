@@ -18,6 +18,7 @@ router.post('/create', logged, async (req,res) => {
     foundUser.notes = foundUser.notes.concat(_id)
     await foundUser.save()
     await created.save()
+
     res.send(created).status(201)
   } else {
     res.send({error: 'Session expired, please Log In.'}).status(401).end()
