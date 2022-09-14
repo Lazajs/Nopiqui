@@ -5,7 +5,10 @@
       "plugin:@typescript-eslint/recommended"
   ],
   "parser": "@typescript-eslint/parser",
-  "parserOptions": { "project": "./tsconfig.json" },
+  "parserOptions": { 
+    "project": ["./tsconfig.json"],
+    "sourceType": "module" 
+},
   "plugins": [
       "@typescript-eslint"
   ],
@@ -18,9 +21,5 @@
           }
       ]
   },
-  "ignorePatterns": ["src/**/*.test.ts", "src/frontend/generated/*"],
-  "env": {
-    "browser": true,
-    "jest": true
-  }
+  "ignorePatterns": ["src/**/*.test.ts", "src/frontend/generated/*"]
 }

@@ -48,6 +48,17 @@
 }
 
 
+.box.spinning {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  p {
+    font-family: 'Assistant';
+    font-weight: 700;
+    text-align: center;
+  }
+}
+
 
 @media (min-width: 1023px) {
  .box {

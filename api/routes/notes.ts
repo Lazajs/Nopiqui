@@ -5,9 +5,22 @@ import logged from "./middlewares/logged";
 
 const router = Router()
 
+router.get('/:id', async (req,res) => {
+  if (!req.params.id) res.send({error: 'Invalid ID'}).status(401).end()
+  const findIt = await notesModel.findById(req.params.id)
+
+  if (findIt) {
+    console.log(findIt)
+    res.send(findIt)
+  } else {
+    res.send({error: 'Not found'}).status(404).end()
+  }
+
+})
+
 router.post('/create', logged, async (req,res) => {
   const {userId, content, title} = req.body
-  const isEqualExistent = await notesModel.findOne({content, title})
+  const isEqualExistent = await notesModel.findOne({title, content})
   const foundUser = await UserModel.findById(userId)
 
   if (isEqualExistent !== undefined && isEqualExistent?.content === content && isEqualExistent?.title === title) {

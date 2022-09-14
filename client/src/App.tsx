@@ -4,6 +4,7 @@ import Register from 'pages/Register'
 import Preview from 'pages/Preview'
 import Home from 'pages/Home' 
 import Create from 'pages/Create'
+import View from 'pages/View'
 import { Routes, Route, useNavigate, useLocation } from 'react-router-dom'
 import React, { useContext, useEffect } from 'react'
 import { UserRecentLoggedCTX } from 'context/UserRecentLogged'
@@ -18,15 +19,14 @@ type UserInformation = {
 // fontsize comienza en 30 por alguna razon
 // el estilo del toolbar no me termina de convencer
 // USAR mismo componente para create y edit
-
-// PROBLEMAS GRAVES 
-// ser mas user friendly con la espera de resolucion de promesas, se ve todo muy poco dinamico
+// arreglar rutas, poder entrar a visualizar nota sin estar registrado
 
 function App () {
   const navigate = useNavigate()
   const location = useLocation()
   const {logged} = useContext(UserRecentLoggedCTX) as UserInformation
   const notAllowedIfLogged = ['/', '/register', '/login']
+
   const {id} = logged
 
   useEffect(()=>{
@@ -45,6 +45,7 @@ function App () {
         <Route path='/login' element={<Login />} />
         <Route path='/home/:userId' element={<Home />} />
         <Route path='/home/:userId/create' element={<Create />} />
+        <Route path='/view/:noteId' element={<View />} />
       </Routes>
   )
 }

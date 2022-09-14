@@ -9,7 +9,6 @@ import React, { Dispatch, SetStateAction, useState } from 'react'
 import useDeleteNote from './hooks/useDeleteNote'
 
 type Elements = HTMLImageElement | HTMLElement
-
 interface Props extends NoteType {
   update: Dispatch<SetStateAction<any>>
 }
@@ -18,16 +17,17 @@ export default function Note ({title, content, id, update} : Props) {
   const [options, toggleOptions] = useState<boolean>(false)
   const navigate = useNavigate()
   const deleteNote = useDeleteNote()
-  // const [isLoading, setIsLoading] = useState<boolean>(false)
-  
+  const [isDeleting, setIsDeleting] = useState<boolean>(false) 
+
   const handleDelete = () => {
+    setIsDeleting(true)
     deleteNote({id})
       .then(res => {
         if (res.ok) {
           update((prev: UserLogged) => {
             const {notes} = prev
             const newOnes = notes.filter((e: NoteType) => e.id !== id)
-
+            setIsDeleting(false)
             return {...prev, notes: newOnes}
           })
         }
@@ -44,9 +44,16 @@ export default function Note ({title, content, id, update} : Props) {
     } else if (target.classList.contains('single')) {
       return
     } else {
-      navigate('/home/:user/note/:id') //note view
+      navigate(`/view/${id}`, {state: {id: id}})
     }
   }
+
+  if (isDeleting) return (
+    <div className='box spinning'>
+      <p>Deleting...</p>
+    </div>
+  )
+
   return (
       <div onClick={handleClick} className='box'>
         <span className='title'>

@@ -15,7 +15,6 @@ export default function NotesSection () {
   const {logged, setLogged} = useContext(UserRecentLoggedCTX) as LogUser
   const [isLoad, setIsLoad] = useState<UserLogged>()
   const parseNotes = (user : UserLogged) => {
-    console.log(user)
     const {notes} = user
     const parsedNotes = notes.map((e: NoteType) => {
       if (e.title.includes('blocks') !== true) return e

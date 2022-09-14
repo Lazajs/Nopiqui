@@ -1,0 +1,22 @@
+.wrapper {
+  padding: 1rem;
+
+  .tools {
+    img {
+      width: 5rem;
+      height: 5rem;
+      cursor: pointer;
+      margin: 1rem;
+    }
+  }
+
+  .visualize {
+    max-width: 1024px;
+    display: block;
+    margin: 8rem auto 0 auto;
+    .title {
+      margin: 1rem;
+      text-align: center;
+    }
+  }
+}
