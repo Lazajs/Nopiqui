@@ -5,14 +5,14 @@ import useSingleNote from './hooks/useSingleNote'
 import Visible from './Visible'
 import Spinner from 'components/Spinner'
 import './styles/index.scss'
-import back from 'assets/images/back.svg'
 import { useNavigate } from 'react-router-dom'
+import NoteOptions from 'components/NoteOptions'
+import Back from 'components/Back'
 
 export default function () {
   const [data, setData] = useState<NoteType>()
   const location = useLocation()
-  const navigate = useNavigate()
-  const noteId = location.pathname.split('/').at(-1)
+  const noteId = location.pathname.split('/').at(-1) as string
   const getNote = useSingleNote() 
   
   useEffect(()=> {
@@ -23,7 +23,8 @@ export default function () {
   return (
     <main className='wrapper'>
       <div className='tools'>
-        <img src={back} onClick={()=> navigate(-1)} alt='Go back'/>
+        <Back />
+        <NoteOptions id={noteId} />
       </div>
       {data ? <Visible data={data}/> : <Spinner/>}
     </main>

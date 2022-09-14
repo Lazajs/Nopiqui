@@ -116,3 +116,14 @@ body { overflow-x: hidden; }
 .save:hover {
   background-color: #ffed9f;
 }
+
+.backbtn {
+  width: 5rem;
+  height: 5rem;
+  cursor: pointer;
+  position: relative;
+  top: 7rem;
+  left: 50%;
+  margin: 1rem;
+  transform: translateX(-50%);
+}

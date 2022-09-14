@@ -15,12 +15,6 @@ type UserInformation = {
   setLogged: React.Dispatch<React.SetStateAction<UserLogged>>
 }
 
-// Deberia agregar boton para archivar y desarchivar
-// fontsize comienza en 30 por alguna razon
-// el estilo del toolbar no me termina de convencer
-// USAR mismo componente para create y edit
-// arreglar rutas, poder entrar a visualizar nota sin estar registrado
-
 function App () {
   const navigate = useNavigate()
   const location = useLocation()

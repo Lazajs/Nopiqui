@@ -2,14 +2,9 @@ import Note from "./Note"
 import Add from "./Add"
 import './styles/NotesSection.scss' 
 import React, { useContext, useState, useEffect } from "react"
-import { NoteType, UserLogged} from 'types'
+import { NoteType, UserLogged, LogUser} from 'types'
 import { UserRecentLoggedCTX } from "context/UserRecentLogged"
 import { Link } from 'react-router-dom'
-
-type LogUser = {
-  logged: UserLogged,
-  setLogged: React.Dispatch<React.SetStateAction<UserLogged>>
-}
 
 export default function NotesSection () {
   const {logged, setLogged} = useContext(UserRecentLoggedCTX) as LogUser
@@ -42,7 +37,7 @@ export default function NotesSection () {
     <main className="main">
       {
         isLoad ? isLoad?.notes.map((e: NoteType) =>{
-          return <Note update={setLogged} title={e.title} content={e?.content} id={e.id} key={e.id} />
+          return <Note title={e.title} content={e?.content} id={e.id} key={e.id} />
         }) : ''
       }
       {

@@ -13,7 +13,7 @@ export default function ({data}: Props) {
 
   return (
     <section className='visualize'>
-      <div className='title' dangerouslySetInnerHTML={{__html: titleMarkup}}></div>
+      <h1 className='title' dangerouslySetInnerHTML={{__html: titleMarkup}}></h1>
       <div className='content' dangerouslySetInnerHTML={{__html: contentMarkup}}></div>
     </section>
   )

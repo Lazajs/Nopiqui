@@ -18,3 +18,8 @@ export interface UserLogged {
   id: string,
   error?:string
 }
+
+export interface LogUser  {
+  logged: UserLogged,
+  setLogged: React.Dispatch<React.SetStateAction<UserLogged>>
+}

@@ -2,6 +2,59 @@
   padding: 1rem;
 
   .tools {
+
+    .backbtn {
+      top: 1rem;
+      left: 0;
+      transform: none;
+    }
+
+    .box.spinning {
+      background-color: transparent;
+      font-size: 3rem;
+      font-weight: 700;
+      font-family: 'Assistant';
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 30rem;
+      padding: 2rem;
+      border-radius: 4rem;
+      background-color: #000;
+      border: #FFF4C5 1px solid;
+      color: #fff;
+    }
+
+    .option-wrapper {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+
+      .option {
+        width: 5rem;
+        position: absolute;
+        right: 0;
+        z-index: 20;
+      }
+
+      .options-box {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: #FFF4C5;
+        width: 7rem;
+        padding-top: 5rem;
+
+        .single {
+          margin: 1rem;
+          width: 3rem;
+        }
+      }
+    }
+
+
     img {
       width: 5rem;
       height: 5rem;
@@ -14,7 +67,9 @@
     max-width: 1024px;
     display: block;
     margin: 8rem auto 0 auto;
+
     .title {
+      font-size: 3rem;
       margin: 1rem;
       text-align: center;
     }

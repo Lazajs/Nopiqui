@@ -10,6 +10,7 @@ import {NoteType, UserLogged} from 'types'
 import useCreate from './hooks/useCreate'
 import { useNavigate } from 'react-router-dom';
 import Spinner from 'components/Spinner';
+import Back from 'components/Back';
 
 type LogUser = {
   logged: UserLogged,
@@ -61,9 +62,10 @@ export default function Create () {
         <NavHome />
       </Nav>
 
+      <Back />
 
       <Editor 
-        toolbarOnFocus
+        // toolbarOnFocus
         placeholder='Title'
         editorState={titleState}
         onEditorStateChange={setTitleState}
@@ -71,7 +73,7 @@ export default function Create () {
         editorClassName='edit-editor title'
         toolbarClassName='edit-toolbar title'
         toolbar={{
-          options:  ['fontFamily', 'colorPicker', 'emoji', 'remove', 'history'],
+          options:  ['fontFamily', 'colorPicker', 'emoji', 'remove', 'history', 'textAlign'],
           fontFamily: {options: ['Assistant', 'Arial', 'Georgia', 'Impact', 'Tahoma', 'Times New Roman', 'Verdana', 'Bad Script']}
         }}
        />
