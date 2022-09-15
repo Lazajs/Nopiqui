@@ -37,7 +37,7 @@ export default function ({id} : Props) {
   }
 
   const handleEdit = () => {
-    navigate(`/edit/${id}`)
+    navigate(`/edit/${id}`, {state: {logged: logged}})
   }
 
 

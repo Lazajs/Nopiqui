@@ -29,7 +29,8 @@ export default function NotesSection () {
 
   useEffect(()=> {
     if (logged !== undefined && logged?.notes !== undefined && logged?.id !== undefined) {
-      setIsLoad(parseNotes(logged))
+      const {...copy} = logged
+      setIsLoad(parseNotes(copy))
     }
   },[logged])
 

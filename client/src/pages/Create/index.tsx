@@ -8,6 +8,8 @@ import useCreate from './hooks/useCreate'
 import { useNavigate } from 'react-router-dom';
 import { UserLogged, NoteType } from 'types';
 import {Dispatch, SetStateAction} from 'react'
+import {useState} from 'react'
+import {EditorState} from 'draft-js'
 
 type Args = {
   setLogged: Dispatch<SetStateAction<UserLogged>>, 
@@ -17,6 +19,8 @@ type Args = {
 }
 
 export default function Create () {
+  const titleHandlers = useState(()=> EditorState.createEmpty())
+  const contentHandlers = useState(()=> EditorState.createEmpty())
   const create = useCreate()
   const navigate = useNavigate()
 
@@ -41,7 +45,7 @@ export default function Create () {
       </Nav>
 
       <Back />
-      <RichEditor doNote={createNote} />
+      <RichEditor doNote={createNote} contentHandlers={contentHandlers} titleHandlers={titleHandlers} />
      
     </div>
   )

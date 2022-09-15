@@ -4,7 +4,7 @@ import { useState, useContext } from 'react';
 import {LogUser, UserLogged} from 'types'
 import {UserRecentLoggedCTX} from 'context/UserRecentLogged'
 import Spinner from 'components/Spinner'
-import React, { Dispatch, SetStateAction} from 'react'
+import { Dispatch, SetStateAction} from 'react'
 
 type ErrorCase = {
   title?: string,
@@ -13,15 +13,21 @@ type ErrorCase = {
 
 type PropParams = {title: string, content: string, userId: string, setLogged: Dispatch<SetStateAction<UserLogged>>}
 
-type Props = {doNote : ({ title, content, userId, setLogged }: PropParams) => Promise<void>}
+type Props = {
+  doNote : ({ title, content, userId, setLogged }: PropParams) => Promise<void>,
+  titleHandlers : Array<any>,
+  contentHandlers: Array<any>
+}
 
-export default function ({doNote}: Props) {
+export default function ({doNote, titleHandlers, contentHandlers}: Props) {
   const {logged, setLogged} = useContext(UserRecentLoggedCTX) as LogUser
   const [isEmpty, setIsEmpty] = useState<ErrorCase>()
   const [isLoading, setIsLoading] = useState<boolean>(false)
-  const [titleState, setTitleState] = useState(()=> EditorState.createEmpty())
-  const [editorState, setEditorState] = useState(()=> EditorState.createEmpty())
- 
+
+  // const [titleState, setTitleState] = useState(()=> EditorState.createEmpty())
+  // const [editorState, setEditorState] = useState(()=> EditorState.createEmpty())
+  const [titleState, setTitleState] = titleHandlers
+  const [editorState, setEditorState] = contentHandlers
 
  const handleSave = async () => {
   const rawTitleString = JSON.stringify(convertToRaw(titleState.getCurrentContent()))
@@ -37,6 +43,7 @@ export default function ({doNote}: Props) {
     } 
     setIsLoading(true)
     await doNote({setLogged: setLogged, title: rawTitleString, content: rawContentString, userId: id})
+      .catch(console.log)
     setIsLoading(false)
     
   }
