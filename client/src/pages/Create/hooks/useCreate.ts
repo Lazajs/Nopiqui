@@ -17,7 +17,6 @@ export default function useSave () {
     } as RequestInit
 
     const response = await fetch('http://127.0.0.1:3001/notes/create', OPTIONS)
-    console.log(response)
     const json = await response?.json()
 
 

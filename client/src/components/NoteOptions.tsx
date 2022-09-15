@@ -35,6 +35,12 @@ export default function ({id} : Props) {
       })
       .catch(console.log)
   }
+
+  const handleEdit = () => {
+    navigate(`/edit/${id}`)
+  }
+
+
   if (isDeleting) return (
     <div className='box spinning'>
       <p>Deleting...</p>
@@ -48,7 +54,7 @@ export default function ({id} : Props) {
           options ? 
           <div className='options-box'>
             <img title='Delete' alt='trash' src={trash} className='single' onClick={handleDelete} />
-            <img title='Edit' alt='edit' src={edit} className='single' />
+            <img title='Edit' alt='edit' src={edit} className='single' onClick={handleEdit} />
             <img title='Archive' alt='archive' src={archive} className='single' />
           </div>
                   : ''
