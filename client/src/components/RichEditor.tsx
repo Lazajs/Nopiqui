@@ -1,4 +1,4 @@
-import { convertToRaw, EditorState } from 'draft-js';
+import { convertToRaw } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
 import { useState, useContext } from 'react';
 import {LogUser, UserLogged} from 'types'
@@ -24,8 +24,6 @@ export default function ({doNote, titleHandlers, contentHandlers}: Props) {
   const [isEmpty, setIsEmpty] = useState<ErrorCase>()
   const [isLoading, setIsLoading] = useState<boolean>(false)
 
-  // const [titleState, setTitleState] = useState(()=> EditorState.createEmpty())
-  // const [editorState, setEditorState] = useState(()=> EditorState.createEmpty())
   const [titleState, setTitleState] = titleHandlers
   const [editorState, setEditorState] = contentHandlers
 
@@ -34,8 +32,8 @@ export default function ({doNote, titleHandlers, contentHandlers}: Props) {
   const rawContentString = JSON.stringify(convertToRaw(editorState.getCurrentContent()))
     const {id} = logged   
     const title = JSON.parse(rawTitleString).blocks[0].text
-    if (title.length > 20) {
-      setIsEmpty({title: 'The title is too long (max: 20 char.)'})
+    if (title.length > 30) {
+      setIsEmpty({title: 'The title is too long (max: 30 char.)'})
       return
     } else if (title === '') {
       setIsEmpty({save: 'Title is required.'})

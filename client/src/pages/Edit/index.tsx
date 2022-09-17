@@ -2,7 +2,7 @@ import Nav from "components/Nav"
 import NavHome from "components/NavHome"
 import Back from "components/Back"
 import RichEditor from "components/RichEditor"
-import { EditorState, ContentState, convertFromRaw } from "draft-js"
+import { EditorState, convertFromRaw } from "draft-js"
 import {Dispatch,  SetStateAction, useEffect, useState} from 'react'
 import {UserLogged, NoteType} from 'types'
 import useEdit from './hooks/useEdit'
@@ -22,7 +22,7 @@ export default function () {
   const edit = useEdit()
   const navigate = useNavigate()
   const location = useLocation()
-  const selfId = location.pathname.split('/').at(-1)
+  const selfId = location.pathname.split('/').at(-1) as string
   const {state} = location as RouterState
 
   const [title, setTitle] = useState<any>()
@@ -55,13 +55,14 @@ export default function () {
   const editNote = async ({setLogged, title, content, userId}: Args) => {
     //received title and content are RAW from Draft.
     console.log(title, content, userId)
-    const res: NoteType = await edit({title: title, content: content, userId: userId})
-
-     if (res.id !== undefined) {
+    const res: NoteType = await edit({title: title, content: content, userId: userId, id: selfId})
+    
+    if (res.id !== undefined) {
       setLogged((prev: UserLogged)  => {
         const {notes} = prev
+        const filtered = notes.filter((e: NoteType) => e.id !== selfId) 
         navigate(`/home/${userId}`)
-        return {...prev, notes: notes.concat(res)}
+        return {...prev, notes: filtered.concat(res)}
       })
     }
   }
