@@ -10,9 +10,9 @@ test('Add note rendered', () => {
   HomeComponent.findByText('Add new...')
 })
 
-test('All notes rendered', () => {
-  const AllNotesRendered = render(<Router><NotesSection /></Router>)
-  AllNotesRendered.getByText('Primera Nota') // has note, but how many?
+// test('All notes rendered', () => {
+//   const AllNotesRendered = render(<Router><NotesSection /></Router>)
+//   AllNotesRendered.getByText('Primera Nota')
   
-  // console.log(AllNotesRendered.debug())
-})
+//   // console.log(AllNotesRendered.debug())
+// })

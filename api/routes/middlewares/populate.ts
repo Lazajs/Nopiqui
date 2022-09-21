@@ -9,7 +9,7 @@ const populate: RequestHandler = async (req, res, next) => {
     res.locals.populated = populated
     next()
   } else {
-    res.status(401).send({error: 'Session expired. Please Log In to continue'})
+    next({type: 'auth'})
   }
 }
 

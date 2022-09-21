@@ -1,7 +1,8 @@
 import React from 'react'
-import 'styles/NavHome.scss'
+import 'components/styles/NavHome.scss'
 import useLogout from '../pages/Home/hooks/useLogout'
 import { useNavigate } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 export default function NavHome () {
   const navigate = useNavigate()
@@ -9,17 +10,19 @@ export default function NavHome () {
 
   const handleClick = () => {
     logout()
-      .then(() => navigate('/'))
+      .then(() => navigate('/login'))
   }
 
   return (
   <>
      <ul className="navhome">
-      <li>Archive</li>
-      <li onClick={handleClick}>Log Out</li>
+      <li><NavLink className={({isActive})=> isActive ?  'active' : undefined } to='/home'>Home</NavLink></li>
+      <li><NavLink className={({isActive})=> isActive ?  'active' : undefined } to='/archive'>Archive</NavLink></li>
+      <NavLink to='/login' onClick={handleClick}>Log Out</NavLink>
     </ul>
-    <button className='logout-btn archive' type='button'>Archive</button>
-    <button className='logout-btn' onClick={handleClick} type='button'>Log Out</button>
+    <NavLink className={({isActive})=> isActive ?  'btn active' : 'btn' } to='/home'>Home</NavLink>
+    <NavLink className={({isActive})=> isActive ?  'btn active' : 'btn' } to='/archive' type='button'>Archive</NavLink> 
+    <NavLink className='btn' onClick={handleClick} to='/login'>Log Out</NavLink>
   </>
   )
 }

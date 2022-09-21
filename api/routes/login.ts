@@ -11,14 +11,14 @@ import User from '../db/models/User'
 dotenv.config()
 const router = Router()
 
-router.post('/', async (req,res)=>{
+router.post('/', async (req, res, next)=>{
   const data = {...req.body}
   const {password, username} = data
   const UserDBData: UserData | null = await User.findOne({username})
 
 
   if (!UserDBData || UserDBData.passwordHash === undefined) {
-    res.status(404).send({message: 'Username not found'}).end()
+    next({type: 'missing'})
   } else {
     const {passwordHash} = UserDBData
     const match = await bcrypt.compare(password, passwordHash)
@@ -36,12 +36,12 @@ router.post('/', async (req,res)=>{
         sameSite: 'none',
         secure: true
       }).header('Access-Control-Allow-Credentials', 'true').status(200).send(userPopulated).end()
-    } else res.status(400).send({message: 'Invalid password'}).end()
+    } else next({type: 'bad'})
   }
 })
 
 router.get('/', logged, async (req,res) =>{
-  res.status(200).send(res.locals.decoded) //here should get all populated notes and be sen
+  res.status(200).send(res.locals.decoded)
 })
 
 export default router

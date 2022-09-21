@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Header from 'components/Header'
-import 'styles/Form.scss'
+import 'components/styles/Form.scss'
 import { UserLogInData } from 'types'
 import useRegisterUser from 'pages/Register/hooks/useRegisterUser'
 import {useNavigate} from 'react-router-dom'

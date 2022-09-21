@@ -9,7 +9,7 @@ import { Routes, Route, Navigate } from 'react-router-dom'
 import Edit from 'pages/Edit'
 import Auth from 'components/Auth'
 import Session from 'components/Session'
-
+import NotFound from 'pages/404'
 
 function App () {
   return (
@@ -28,7 +28,7 @@ function App () {
           <Route path='/:noteId/edit' element={<Edit />} />
         </Route>
 
-        <Route path='/404' element={<h1>LOL 404</h1>} />
+        <Route path='/404' element={<NotFound />} />
         <Route path='*' element={<Navigate to='/404'/>} />
       </Routes>
   )

@@ -1,5 +1,5 @@
 import React from 'react'
-import 'styles/Header.scss'
+import 'components/styles/Header.scss'
 
 type Props = {
   children?: JSX.Element

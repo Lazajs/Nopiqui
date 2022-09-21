@@ -1,4 +1,4 @@
-import 'styles/Form.scss'
+import 'components/styles/Form.scss'
 import React,{useEffect, useState, useContext} from 'react'
 import Header from 'components/Header'
 import {UserLogged, UserLogInData} from 'types'

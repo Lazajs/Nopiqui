@@ -4,7 +4,7 @@ import User from "../db/models/User"
 
 const router = express.Router()
 
-router.post('/', async (req, res)=>{ //still missing notes 
+router.post('/', async (req, res, next)=>{ //still missing notes 
   const body = {...req.body}
   const {password, username} = body
   const passwordHash = await bcrypt.hash(password, 12).then()
@@ -16,7 +16,7 @@ router.post('/', async (req, res)=>{ //still missing notes
   const check = await User.findOne({username})
 
   if (check !== null) {
-    res.status(400).send({message: 'Username already taken.'}).end()
+    next({type: 'bad'})
   } else {
     NewUser.save()
       .then(is => res.status(201).end())

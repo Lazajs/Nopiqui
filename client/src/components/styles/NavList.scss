@@ -14,18 +14,10 @@
       padding: 2rem 8rem;
       font-family: 'Assistant';
       font-weight: 700;
-      border: 1px solid black;
       border-right: none;
       border-left: none;
       font-size: 1.8rem;
-
-      &:first-child {
-        border-top: none;
-      }
-
-      &:last-child {
-        border-bottom: 2px solid black;
-      }
+      white-space: nowrap;
     }
   }
 
@@ -37,17 +29,12 @@
       padding-top: 0;
       justify-content: right;
       align-items: center;
-      border-bottom: 1px solid black;
-      height: 7rem;
 
       li {
-        border: none;
-        border-left: 1px solid black;
         font-size: 2rem;
 
-        &:last-child {
-          border: none;
-          border-left: 1px solid black;
+        &:hover {
+          background-color: #fff1b3;
         }
       }
     }

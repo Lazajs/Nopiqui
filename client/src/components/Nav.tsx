@@ -2,7 +2,7 @@ import React, {useState, useRef} from "react"
 import burger from 'assets/images/burger.svg'
 import isotipo from 'assets/images/isotipo.svg'
 import x from 'assets/images/x.svg'
-import 'styles/Nav.scss'
+import 'components/styles/Nav.scss'
 
 type Props = {
   children: JSX.Element

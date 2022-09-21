@@ -1,0 +1,36 @@
+.error {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  font-family: 'Assistant';
+  padding-top: 10rem;
+  gap: 2rem;
+
+  h2 {
+    font-size: 3rem;
+    font-family: 'Bad Script';
+    font-weight: 700;
+  }
+
+  .text {
+    font-size: 2rem;
+    font-weight: 500;
+  }
+
+  img {
+    width: 15rem;
+  }
+
+  .return {
+    width: 30rem;
+    height: 5rem;
+    font-weight: 700;
+    font-size: 2rem;
+    background-color: #FFF4C5;
+    cursor: pointer;
+  }
+
+}

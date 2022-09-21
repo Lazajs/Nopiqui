@@ -7,6 +7,7 @@ import notes from './routes/notes'
 import logout from './routes/logout'
 import logged from './routes/middlewares/logged'
 import populate from './routes/middlewares/populate'
+import handleError from './routes/middlewares/handleError'
 import cors from 'cors'
 import dotenv from 'dotenv'
 import cookieParser from 'cookie-parser'
@@ -34,12 +35,16 @@ app.use('/contact', contact)
 app.use('/notes', notes)
 app.use('/logout', logout)
 
-
-app.get('/' , logged, populate, (req, res) => {
+app.get('/' , logged, populate, (req, res, next) => {
   const populated = res.locals?.populated
+  
   if (populated) {
     res.status(200).send(populated).end()
-  } else res.status(401).send({ error: 'Session expired. Please Log In to continue' })
+  } else {
+    next({type: 'auth'})
+  }
 })
+
+app.use(handleError)
 
 app.listen(process.env.PORT || 3001, ()=> console.log('listening'))

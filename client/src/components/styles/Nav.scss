@@ -8,14 +8,14 @@
   left: 0;
   z-index: 100;
   background-color: #FFF4C5;
- 
+
   a {
     color: #000;
     text-decoration: none;
   }
 
   .isotipo {
-    height: 120%;
+    width: 7rem;
     z-index: 101;
   }
 
@@ -23,6 +23,7 @@
     z-index: 101;
     margin-right: 1rem;
     height: 100%;
+    background-color: transparent;
 
     &.active ~ ul {
       display: flex;
@@ -30,8 +31,15 @@
   }
 }
 
+.btn.active, .active {
+  background-color: #fff1b3;
+}
+
 @media (min-width: 1023px) {
   .navigation {
+    padding-left: 12rem;
+    justify-content: end;
+    align-items: center;
 
     .burger {
       display: none;
@@ -39,7 +47,6 @@
 
     .isotipo {
       position: absolute;
-      height: 130%;
       left: 1rem;
       top: 0;
     }
