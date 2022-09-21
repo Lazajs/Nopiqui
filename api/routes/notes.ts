@@ -61,8 +61,9 @@ router.delete('/:noteId', logged, async (req, res) => {
 
 router.put('/', logged, async (req,res) => {
   const {body} = req
-  const {title, content} = body
-  const edited = await notesModel.findByIdAndUpdate(body.id, {title: title, content: content }, {new: true})
+  const {title, content, id} = body
+  console.log(body)
+  const edited = await notesModel.findByIdAndUpdate(id, {title: title, content: content }, {new: true})
   if (edited?.id !== undefined) {
     res.send(edited).status(201).end()
   } else res.send({error: 'Note not found'}).status(404).end()

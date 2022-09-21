@@ -1,29 +1,12 @@
 .wrapper {
   padding: 1rem;
-
+ 
   .tools {
 
     .backbtn {
       top: 1rem;
       left: 0;
       transform: none;
-    }
-
-    .box.spinning {
-      background-color: transparent;
-      font-size: 3rem;
-      font-weight: 700;
-      font-family: 'Assistant';
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      width: 30rem;
-      padding: 2rem;
-      border-radius: 4rem;
-      background-color: #000;
-      border: #FFF4C5 1px solid;
-      color: #fff;
     }
 
     .option-wrapper {
@@ -54,7 +37,6 @@
       }
     }
 
-
     img {
       width: 5rem;
       height: 5rem;
@@ -75,3 +57,25 @@
     }
   }
 }
+
+.box.spinning {
+  background-color: transparent;
+  font-size: 3rem;
+  font-weight: 500;
+  font-family: 'Assistant';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 20rem;
+  border-radius: 4rem;
+  background-color: #FFF4C5;
+  border: #FFF4C5 1px solid;
+  color: #000;
+  text-align: center;
+  height: fit-content;
+  padding: 2rem;
+  cursor:default;
+}
+
+   

@@ -5,47 +5,31 @@ import Preview from 'pages/Preview'
 import Home from 'pages/Home' 
 import Create from 'pages/Create'
 import View from 'pages/View'
-import { Routes, Route, useNavigate, useLocation } from 'react-router-dom'
-import React, { useContext, useEffect } from 'react'
-import { UserRecentLoggedCTX } from 'context/UserRecentLogged'
-import { UserLogged } from 'types'
+import { Routes, Route, Navigate } from 'react-router-dom'
 import Edit from 'pages/Edit'
+import Auth from 'components/Auth'
+import Session from 'components/Session'
 
-type UserInformation = {
-  logged : UserLogged,
-  setLogged: React.Dispatch<React.SetStateAction<UserLogged>>
-}
-
-// fontsize comienza en 30 por alguna razon
-// USAR mismo componente para create y edit
-// arreglar rutas, poder entrar a visualizar nota sin estar registrado
-// Crear ruta de 404
 
 function App () {
-  const navigate = useNavigate()
-  const location = useLocation()
-  const {logged} = useContext(UserRecentLoggedCTX) as UserInformation
-  const notAllowedIfLogged = ['/', '/register', '/login']
-
-  const {id} = logged
-
-  useEffect(()=>{
-    if (logged?.error !== undefined && Boolean(logged?.error)){
-      navigate(notAllowedIfLogged.includes(location.pathname) ? location.pathname : '/login')
-    } else if (logged !== undefined && logged.username !== '') {
-      navigate(notAllowedIfLogged.includes(location.pathname) ? `/home/${id}` : location.pathname)
-    }
-  },[logged])
-
   return (
       <Routes>
-        <Route path='/' element={<Preview />} />
-        <Route path='/register' element={<Register />} />
-        <Route path='/login' element={<Login />} />
-        <Route path='/home/:userId' element={<Home />} />
-        <Route path='/home/:userId/create' element={<Create />} />
-        <Route path='/view/:noteId' element={<View />} />
-        <Route path='/edit/:noteId' element={<Edit />} />
+        <Route element ={<Session />}> 
+          <Route path='/' element={<Preview />} />
+          <Route path='/register' element={<Register />} />
+          <Route path='/login' element={<Login />} />
+        </Route>
+
+        <Route path='/:noteId/view' element={<View />} />
+
+        <Route element={<Auth />}>
+          <Route path='/home' element={<Home />} />
+          <Route path='/:userId/create' element={<Create />} />
+          <Route path='/:noteId/edit' element={<Edit />} />
+        </Route>
+
+        <Route path='/404' element={<h1>LOL 404</h1>} />
+        <Route path='*' element={<Navigate to='/404'/>} />
       </Routes>
   )
 }

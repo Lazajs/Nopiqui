@@ -44,7 +44,7 @@ export default function Login () {
         if (response.ok) {
           setLoading(false)
           setLogged(dataResponse)
-          navigate(`/home/${dataResponse.id}`)
+          navigate(`/home`)
         } else {
           setLoading(false)
           setInvalid({is: true, comment: dataResponse.message})

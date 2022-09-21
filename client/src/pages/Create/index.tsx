@@ -31,7 +31,7 @@ export default function Create () {
      if (res.id !== undefined) {
       setLogged((prev: UserLogged)  => {
         const {notes} = prev
-        navigate(`/home/${userId}`)
+        navigate(`/${res.id}/view`)
         return {...prev, notes: notes.concat(res)}
       })
     }
@@ -44,7 +44,7 @@ export default function Create () {
         <NavHome />
       </Nav>
 
-      <Back />
+      <Back to='/home' />
       <RichEditor doNote={createNote} contentHandlers={contentHandlers} titleHandlers={titleHandlers} />
      
     </div>

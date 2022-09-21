@@ -21,7 +21,7 @@ export default function Preview () {
       <Pricing />
       <footer className='foot'>
         <p>Thanks for visiting</p>
-        <p>Checkout my other projects at <a target='_blank' href='https://github.com/Lazajs'>Github</a></p>
+        <p>Take a look at my other projects at <a target='_blank' href='https://github.com/Lazajs'>Github</a></p>
         <p>&#10084;</p>
       </footer>
     </>

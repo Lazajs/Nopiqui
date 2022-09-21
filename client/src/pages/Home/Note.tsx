@@ -2,11 +2,13 @@ import './styles/Note.scss'
 import { useNavigate } from 'react-router-dom'
 import NoteOptions from 'components/NoteOptions'
 import {NoteType} from 'types'
+import {useState} from 'react'
 
 type Elements = HTMLImageElement | HTMLElement
 
 export default function Note ({title, content, id} : NoteType) {
   const navigate = useNavigate()
+  const [isLoading, setIsLoading] = useState<boolean>(false)
 
   const handleClick = (e: React.SyntheticEvent) =>{
     const target: Elements = e.target as Elements
@@ -17,9 +19,15 @@ export default function Note ({title, content, id} : NoteType) {
     } else if (target.classList.contains('single')) {
       return
     } else {
-      navigate(`/view/${id}`, {state: {id: id}})
+      navigate(`/${id}/view`)
     }
   }
+
+  if (isLoading) return (
+    <div className='box deleting'>
+      <p>Deleting...</p>
+    </div>
+  )
 
   return (
       <div onClick={handleClick} className='box'>
@@ -29,7 +37,7 @@ export default function Note ({title, content, id} : NoteType) {
         <span className='content'>
           {content}
         </span>
-        <NoteOptions id={id}/>
+        <NoteOptions loading={setIsLoading} id={id}/>
       </div>
   )
 }

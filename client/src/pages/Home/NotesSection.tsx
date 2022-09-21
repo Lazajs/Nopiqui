@@ -1,13 +1,13 @@
 import Note from "./Note"
-import Add from "./Add"
 import './styles/NotesSection.scss' 
-import React, { useContext, useState, useEffect } from "react"
+import { useContext, useState, useEffect } from "react"
 import { NoteType, UserLogged, LogUser} from 'types'
 import { UserRecentLoggedCTX } from "context/UserRecentLogged"
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom"
+import Add from "./Add"
 
 export default function NotesSection () {
-  const {logged, setLogged} = useContext(UserRecentLoggedCTX) as LogUser
+  const {logged} = useContext(UserRecentLoggedCTX) as LogUser
   const [isLoad, setIsLoad] = useState<UserLogged>()
   const parseNotes = (user : UserLogged) => {
     const {notes} = user
@@ -45,7 +45,7 @@ export default function NotesSection () {
         isLoad && isLoad?.notes.length <= 0 ? <p className="none">Your ideas will appear here, start creating!</p> : ''
       }
       {
-        isLoad !== undefined && isLoad.id !== undefined ? <Link to={`/home/${isLoad.id}/create`}><Add /></Link> : ''
+        isLoad !== undefined && isLoad.id !== undefined ? <Link to={`/${isLoad.id}/create`}><Add /></Link> : ''
       }
     </main>
   )
