@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "client": "npm run dev ---workspace=client",
-    "api": "npm run dev --workspace=api"
+    "api": "npm run dev --workspace=api",
+    "commit": "npm run co --workspace=client"
   },
   "workspaces": [
     "api",
