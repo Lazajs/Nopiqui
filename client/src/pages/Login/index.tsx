@@ -54,7 +54,6 @@ export default function Login () {
       getToken()
         .catch(err => {
           setLoading(false)
-          console.log(err)
         })
     }
   },[allFormData])

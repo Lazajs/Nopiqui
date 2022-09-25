@@ -49,7 +49,6 @@ export default function Register () {
     handleAsync()
       .catch(err => {
         setIsLoading(false)
-        console.log(err)
       })
   },[allFormData])
 

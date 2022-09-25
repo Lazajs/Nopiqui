@@ -1,4 +1,4 @@
-import Note from "./Note"
+import NoteList from "./NoteList"
 import './styles/NotesSection.scss' 
 import { useContext, useState, useEffect } from "react"
 import { NoteType, UserLogged, LogUser} from 'types'
@@ -9,6 +9,7 @@ import Add from "./Add"
 export default function NotesSection () {
   const {logged} = useContext(UserRecentLoggedCTX) as LogUser
   const [isLoad, setIsLoad] = useState<UserLogged>()
+
   const parseNotes = (user : UserLogged) => {
     const {notes} = user
     const parsedNotes = notes.map((e: NoteType) => {
@@ -37,16 +38,14 @@ export default function NotesSection () {
   return (
     <main className="main">
       {
-        isLoad ? isLoad?.notes.map((e: NoteType) =>{
-          return <Note title={e.title} content={e?.content} id={e.id} key={e.id} />
-        }) : ''
+        isLoad ? <NoteList notes={isLoad.notes} /> : ''
       }
       {
         isLoad && isLoad?.notes.length <= 0 ? <p className="none">Your ideas will appear here, start creating!</p> : ''
       }
-      {
-        isLoad !== undefined && isLoad.id !== undefined ? <Link to={`/${isLoad.id}/create`}><Add /></Link> : ''
-      }
+      <Link to={isLoad ? `/${isLoad.id}/create` : '/'}>
+        <Add />
+      </Link>
     </main>
   )
 }

@@ -1,4 +1,4 @@
-import './App.scss'
+import './App.scss' 
 import Login from 'pages/Login'
 import Register from 'pages/Register'
 import Preview from 'pages/Preview'

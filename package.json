@@ -1,0 +1,33 @@
+{
+  "name": "npa",
+  "version": "1.0.0",
+  "description": "No readme yet.",
+  "main": "index.js",
+  "scripts": {
+    "client": "npm run dev ---workspace=client",
+    "api": "npm run dev --workspace=api"
+  },
+  "workspaces": [
+    "api",
+    "client"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lazajs/Nopiquiapp.git"
+  },
+ "eslintConfig": {
+    "extends": [
+      "./node_modules/ts-standard/eslintrc.json"
+    ]
+  },
+  "devDependencies": {
+    "ts-standard": "11.0.0"
+  },
+  "keywords": [],
+  "author": "Lazajs",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Lazajs/Nopiquiapp/issues"
+  },
+  "homepage": "https://github.com/Lazajs/Nopiquiapp#readme"
+}

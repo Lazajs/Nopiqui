@@ -8,6 +8,7 @@ import { UserRecentLoggedCTX } from 'context/UserRecentLogged'
 import { NoteType, UserLogged, LogUser } from 'types'
 import {useNavigate} from 'react-router-dom'
 
+
 type Props = {
   id: string,
   loading: React.Dispatch<SetStateAction<boolean>>

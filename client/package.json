@@ -1,7 +1,6 @@
 {
   "name": "nopiquiapp",
   "version": "0.1.0",
-  "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "5.16.4",
     "@testing-library/react": "13.3.0",
@@ -43,15 +42,11 @@
       "last 1 safari version"
     ]
   },
-  "eslintConfig": {
-    "extends": "./node_modules/ts-standard/eslintrc.js"
-  },
   "devDependencies": {
     "@s-ui/mono": "^2.31.0",
-    "@types/draft-js": "^0.11.9",
+    "@types/draft-js": "0.11.9",
     "@types/draftjs-to-html": "^0.8.1",
-    "@types/react-draft-wysiwyg": "^1.13.4",
-    "ts-jest": "^28.0.8",
-    "ts-standard": "^11.0.0"
+    "@types/react-draft-wysiwyg": "1.13.4",
+    "ts-jest": "^28.0.8"
   }
 }

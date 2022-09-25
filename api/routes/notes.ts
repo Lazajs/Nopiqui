@@ -10,7 +10,6 @@ router.get('/:id', async (req,res) => {
   const findIt = await notesModel.findById(req.params.id)
 
   if (findIt) {
-    console.log(findIt)
     res.send(findIt)
   } else {
     res.send({error: 'Not found'}).status(404).end()

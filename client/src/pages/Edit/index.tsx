@@ -54,7 +54,6 @@ export default function () {
 
   const editNote = async ({setLogged, title, content, userId}: Args) => {
     //received title and content are RAW from Draft.
-    console.log(title, content, userId)
     const res: NoteType = await edit({title: title, content: content, userId: userId, id: noteId as string})
     
     if (res.id !== undefined) {
