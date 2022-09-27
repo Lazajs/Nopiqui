@@ -12,26 +12,26 @@ import Session from 'components/Session'
 import NotFound from 'pages/404'
 
 function App () {
-  return (
-      <Routes>
-        <Route element ={<Session />}> 
-          <Route path='/' element={<Preview />} />
-          <Route path='/register' element={<Register />} />
-          <Route path='/login' element={<Login />} />
-        </Route>
+	return (
+		<Routes>
+			<Route element ={<Session />}> 
+				<Route path='/' element={<Preview />} />
+				<Route path='/register' element={<Register />} />
+				<Route path='/login' element={<Login />} />
+			</Route>
 
-        <Route path='/:noteId/view' element={<View />} />
+			<Route path='/:noteId/view' element={<View />} />
 
-        <Route element={<Auth />}>
-          <Route path='/home' element={<Home />} />
-          <Route path='/:userId/create' element={<Create />} />
-          <Route path='/:noteId/edit' element={<Edit />} />
-        </Route>
+			<Route element={<Auth />}>
+				<Route path='/home' element={<Home />} />
+				<Route path='/:userId/create' element={<Create />} />
+				<Route path='/:noteId/edit' element={<Edit />} />
+			</Route>
 
-        <Route path='/404' element={<NotFound />} />
-        <Route path='*' element={<Navigate to='/404'/>} />
-      </Routes>
-  )
+			<Route path='/404' element={<NotFound />} />
+			<Route path='*' element={<Navigate to='/404'/>} />
+		</Routes>
+	)
 }
 
 export default App

@@ -3,7 +3,8 @@ export interface NoteType {
   content?: string,
   archived: boolean,
   cration: string,
-  userId: string
+  userId: string,
+  _id?: string
 }
 
 export interface UserData {
@@ -11,6 +12,7 @@ export interface UserData {
   passwordHash: string,
   creation: string,
   id: string,
+  _id?: string
   notes: NoteType[] | Array,
-  archive: NoteType[] | Array
+  archive: NoteType[] | Array,
 }

@@ -1,27 +1,47 @@
 {
-  "root": true,
-  "extends": [
-      "eslint:recommended",
-      "plugin:@typescript-eslint/recommended"
-  ],
-  "parser": "@typescript-eslint/parser",
-  "parserOptions": {
-    "project": [
-      "./client/tsconfig.json",
-      "./api/tsconfig.json"
-    ]
-  },
-  "plugins": [
-      "@typescript-eslint"
-  ],
-  "rules": {
-      "@typescript-eslint/strict-boolean-expressions": [
-          2,
-          {
-              "allowString" : false,
-              "allowNumber" : false
-          }
-      ]
-  },
-  "ignorePatterns": ["src/**/*.test.ts", "src/frontend/generated/*"]
+    "env": {
+        "browser": true,
+        "es2021": true,
+        "node": true
+    },
+    "ignorePatterns": [
+        "**/build/**/**",
+        "**/custom.d.ts"
+    ],
+    "extends": [
+        "eslint:recommended",
+        "plugin:react/recommended",
+        "plugin:@typescript-eslint/recommended"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": "latest",
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react",
+        "@typescript-eslint"
+    ],
+    "rules": {
+        "react/react-in-jsx-scope": "off",
+        "indent": [
+            "error",
+            "tab"
+        ],
+        "linebreak-style": [
+            "error",
+            "windows"
+        ],
+        "quotes": [
+            "error",
+            "single"
+        ],
+        "semi": [
+            "error",
+            "never"
+        ]
+    }
 }

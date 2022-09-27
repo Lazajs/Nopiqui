@@ -17,13 +17,13 @@ dotenv.config()
 const app = express()
 
 const corsOptions = {
-  credentials: true,
-  origin: ['http://localhost:3000'],
+	credentials: true,
+	origin: ['http://localhost:3000'],
 }
 
 connectDB
-  .then(res => console.log('Succesfully connected to DB'))
-  .catch(ConnectToDBError => console.log({ConnectToDBError}))
+	.then(() => console.log('Succesfully connected to DB'))
+	.catch(ConnectToDBError => console.log({ConnectToDBError}))
 
 app.use(cookieParser())
 app.use(express.json({limit: '50mb'}))
@@ -36,15 +36,15 @@ app.use('/notes', notes)
 app.use('/logout', logout)
 
 app.get('/' , logged, populate, (req, res, next) => {
-  const populated = res.locals?.populated
+	const populated = res.locals?.populated
   
-  if (populated) {
-    res.status(200).send(populated).end()
-  } else {
-    next({type: 'auth'})
-  }
+	if (populated !== undefined) {
+		res.status(200).send(populated).end()
+	} else {
+		next({type: 'auth'})
+	}
 })
 
 app.use(handleError)
 
-app.listen(process.env.PORT || 3001, ()=> console.log('listening'))
+app.listen(process.env.PORT === undefined ? 3001 : process.env.PORT, ()=> console.log('listening'))

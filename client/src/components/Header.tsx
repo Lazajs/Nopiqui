@@ -6,15 +6,15 @@ type Props = {
 }
 
 export default function Header ({children}: Props) {
-  return (
-  <>
+	return (
+		<>
 
-    {children !== undefined ? children : ''}
+			{children !== undefined ? children : ''}
 
-    <header className='header'>
-      <h1>Nopiqui</h1>
-      <small>your notes, in a minimalist way .</small>
-    </header>
-  </>
-  )
+			<header className='header'>
+				<h1>Nopiqui</h1>
+				<small>your notes, in a minimalist way .</small>
+			</header>
+		</>
+	)
 }

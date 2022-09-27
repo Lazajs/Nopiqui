@@ -3,13 +3,13 @@ type Params = {
 }
 
 export default function useDeleteNote () {
-  return async ({id}: Params) =>{
-    const OPTIONS = {
-      method: 'DELETE',
-      credentials: 'include'
-    } as RequestInit
+	return async ({id}: Params) =>{
+		const OPTIONS = {
+			method: 'DELETE',
+			credentials: 'include'
+		} as RequestInit
 
-    const request = await fetch(`http://127.0.0.1:3001/notes/${id}`, OPTIONS)
-    return request
-  }
+		const request = await fetch(`http://127.0.0.1:3001/notes/${id}`, OPTIONS)
+		return request
+	}
 }

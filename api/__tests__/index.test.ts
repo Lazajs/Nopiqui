@@ -1,3 +1,3 @@
 test('First test with node', () => {
-  expect(true).toBe(true)
+	expect(true).toBe(true)
 })
