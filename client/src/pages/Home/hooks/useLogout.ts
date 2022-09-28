@@ -11,8 +11,8 @@ export default function useLogout () {
 			credentials: 'include'
 		} as RequestInit
 
-		const send = await fetch('http://127.0.0.1:3001/logout', OPTIONS)
-		setLogged({id: '', username: '', notes: [], archive:[]})
+		const send = await fetch('/logout', OPTIONS)
+		setLogged({id: '', username: '', notes: []})
 		return send
 	}
 	return request

@@ -18,7 +18,7 @@ export default function () {
 			credentials: 'include'
 		} as RequestInit
 
-		const response = await fetch('http://127.0.0.1:3001/notes', OPTIONS)
+		const response = await fetch('/notes', OPTIONS)
 		const json = await response?.json()
 
 

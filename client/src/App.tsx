@@ -10,6 +10,7 @@ import Edit from 'pages/Edit'
 import Auth from 'components/Auth'
 import Session from 'components/Session'
 import NotFound from 'pages/404'
+import Archive from 'pages/Home/Archive'
 
 function App () {
 	return (
@@ -23,7 +24,9 @@ function App () {
 			<Route path='/:noteId/view' element={<View />} />
 
 			<Route element={<Auth />}>
-				<Route path='/home' element={<Home />} />
+				<Route path='/home' element={<Home />}>
+					<Route path='archive' element={<Archive />} />
+				</Route>
 				<Route path='/:userId/create' element={<Create />} />
 				<Route path='/:noteId/edit' element={<Edit />} />
 			</Route>

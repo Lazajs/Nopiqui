@@ -7,7 +7,7 @@ import { useState, useContext, SetStateAction } from 'react'
 import { UserRecentLoggedCTX } from 'context/UserRecentLogged'
 import { NoteType, UserLogged, LogUser } from 'types'
 import {useNavigate} from 'react-router-dom'
-
+import useArchive from 'hooks/useArchive'
 
 type Props = {
   id: string,
@@ -19,6 +19,7 @@ export default function NoteOptions ({id, loading} : Props) {
 	const {logged, setLogged} = useContext(UserRecentLoggedCTX) as LogUser
 	const [options, toggleOptions] = useState<boolean>(false)
 	const deleteNote = useDeleteNote()
+	const toggleArchive = useArchive()
 
 	const handleDelete = () => {
 		loading(true)
@@ -41,6 +42,25 @@ export default function NoteOptions ({id, loading} : Props) {
 		navigate(`/${id}/edit`, {state: {logged: logged}})
 	}
 
+	const handleArchive = () => {
+		loading(true)
+		toggleArchive({ id })
+			.then(res => {
+				if (res.ok) {
+					setLogged((prev: UserLogged) => {
+						const {notes} = prev
+						const current = notes.find((e: NoteType) => e.id === id)
+						current.archived = current.archived === true ?  false : true
+						const newNotes = notes.filter((e: NoteType) => e.id !== current.id)
+						loading(false)
+						if (!location.pathname.includes('/home')) navigate('/home')
+						return {...prev, notes: newNotes.concat(current)}
+					})
+				}
+			})
+			.catch(console.log)
+	}
+
 	return (
 		<span className='option-wrapper'>
 
@@ -54,7 +74,7 @@ export default function NoteOptions ({id, loading} : Props) {
 					<div className='options-box'>
 						<img  title='Delete' alt='trash' src={trash} className='single' onClick={handleDelete} />
 						<img  title='Edit' alt='edit' src={edit} className='single' onClick={handleEdit} />
-						<img  title='Archive' alt='archive' src={archive} className='single' />
+						<img  title='Archive' alt='archive' src={archive} className='single' onClick={handleArchive} />
 					</div>
 					: ''
 			} 

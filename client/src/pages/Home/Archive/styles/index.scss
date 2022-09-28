@@ -1,0 +1,23 @@
+.archive {
+  display: block;
+  margin: auto;
+
+  .main {
+    margin: 0;
+  }
+
+  .nothing {
+    font-family: 'Assistant';
+    font-size: 2rem;
+    text-align: center;
+  }
+
+  h2 {
+    font-size: 3rem;
+    font-family: 'Assistant';
+    text-align: left;
+    font-weight: 700;
+    opacity: .5;
+    margin: 0 0 1rem 3rem;
+  }
+}

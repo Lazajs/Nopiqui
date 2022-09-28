@@ -3,20 +3,41 @@ import notesModel from '../db/models/Note'
 import UserModel from '../db/models/User'
 import logged from './middlewares/logged'
 import {  UserData } from '../types'
-
-const router = Router()
+import populate from './middlewares/populate'
+import archive from './archive'
+import {isLogged} from './middlewares/logged'
 
 interface ToSave extends UserData {
   save: () => Promise<void>
 }
 
+const router = Router()
 
-router.get('/:id', async (req,res, next) => {
-	if (req.params.id !== '') next({type: 'bad'})
+router.use('/archive', archive)
+
+router.get('/' , logged, populate, (req, res, next) => {
+	const populated = res.locals?.populated
+  
+	if (populated !== undefined) {
+		res.status(200).send(populated).end()
+	} else {
+		next({type: 'auth'})
+	}
+})
+
+
+
+router.get('/:id',isLogged, async (req,res, next) => {
+
+	if (req.params.id === '') next({type: 'bad'})
 	const findIt = await notesModel.findById(req.params.id)
 
 	if (findIt) {
-		res.send(findIt)
+		if (findIt.archived && res.locals.logged) {
+			res.send(findIt)
+		} else {
+			next({type: 'auth'})
+		}
 	} else {
 		next({type: 'missing'})
 	}

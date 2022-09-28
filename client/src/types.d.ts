@@ -14,7 +14,6 @@ export interface NoteType {
 export interface UserLogged {
   username: string,
   notes: NoteType[] | Array,
-  archive: NoteType[] | Array,
   id: string,
   error?:string
 }

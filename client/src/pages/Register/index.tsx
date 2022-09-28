@@ -25,10 +25,10 @@ export default function Register () {
   
 	useEffect(()=>{
 		const handleAsync = async () => {
-			setIsLoading(true)
 			if (password !== confirmed) {
 				setInvalid({comment: 'Passwords doesn\'t match.', is: true})
 			} else if (allFormData !== undefined && Boolean(username) === true && Boolean(password) === true && Boolean(confirmed) === true) {
+				setIsLoading(true)
 				const sent = await register(allFormData)
 				if (sent.ok) {
 					setIsLoading(false)

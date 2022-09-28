@@ -16,7 +16,7 @@ export default function useSave () {
 			credentials: 'include'
 		} as RequestInit
 
-		const response = await fetch('http://127.0.0.1:3001/notes/create', OPTIONS)
+		const response = await fetch('/notes/create', OPTIONS)
 		const json = await response?.json()
 
 

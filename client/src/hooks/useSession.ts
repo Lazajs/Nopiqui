@@ -11,10 +11,10 @@ export default function useSession () {
 				credentials: 'include'
 			} as RequestInit
 
-			const send = await fetch('http://127.0.0.1:3001/', OPTIONS)
+			const send = await fetch('/notes', OPTIONS)
 			const json = await send.json()
 			if (json?.error !== undefined) {
-				setUser({id: '', error: json.error, username: '', notes: [], archive:[]})
+				setUser({id: '', error: json.error, username: '', notes: []})
 			} else {
 				const {...data}: UserLogged = json
 				setUser(data)

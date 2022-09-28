@@ -7,7 +7,7 @@ type Props = {children: JSX.Element}
 const UserRecentLoggedCTX = createContext({})
 
 export default function UserProvider ({children}: Props) {
-	const [logged, setLogged] = useState<UserLogged>({username:'', id: '', notes: [], archive:[]})
+	const [logged, setLogged] = useState<UserLogged>({username:'', id: '', notes: []})
 	const {user} = useSession()
   
 	useEffect(()=> {

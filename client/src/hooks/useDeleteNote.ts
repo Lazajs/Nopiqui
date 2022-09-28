@@ -9,7 +9,7 @@ export default function useDeleteNote () {
 			credentials: 'include'
 		} as RequestInit
 
-		const request = await fetch(`http://127.0.0.1:3001/notes/${id}`, OPTIONS)
+		const request = await fetch(`/notes/${id}`, OPTIONS)
 		return request
 	}
 }

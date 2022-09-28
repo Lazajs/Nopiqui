@@ -1,7 +1,5 @@
 import { UserLogInData } from 'types'
 
-const PORT = 3001
-
 export default function useRegisterUser () {
 	return async (data: UserLogInData) => {
 		const OPTIONS = {
@@ -12,7 +10,7 @@ export default function useRegisterUser () {
 			}
 		}
 
-		const request = await fetch(`http://127.0.0.1:${PORT}/register`, OPTIONS)
+		const request = await fetch('/register', OPTIONS)
 		return request 
 	}
 }

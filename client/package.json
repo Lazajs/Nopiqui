@@ -48,5 +48,6 @@
     "@types/draftjs-to-html": "^0.8.1",
     "@types/react-draft-wysiwyg": "1.13.4",
     "ts-jest": "^28.0.8"
-  }
+  },
+  "proxy": "http://localhost:3001"
 }

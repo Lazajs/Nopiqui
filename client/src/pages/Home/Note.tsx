@@ -25,7 +25,7 @@ export default function Note ({title, content, id} : NoteType) {
 
 	if (isLoading) return (
 		<div className='box deleting'>
-			<p>Deleting...</p>
+			<p>Loading...</p>
 		</div>
 	)
 

@@ -3,7 +3,6 @@ import mongoose from 'mongoose'
 const userSchema = new mongoose.Schema({
 	username: String,
 	passwordHash: String,
-	archive: [],
 	notes: [{
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'Note'
