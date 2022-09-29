@@ -6,10 +6,15 @@ import sit from 'assets/images/sit-person.jpg'
 import Pricing from 'pages/Preview/Pricing'
 import Nav from 'components/Nav'
 import NavList from 'pages/Preview/NavList'
+import Helmet from 'react-helmet'
 
 export default function Preview () {
 	return (
 		<>
+			<Helmet>
+				<title>Nopiqui | Get Started</title>
+				<meta name="description" content="Create, read, update and delete your notes or to-do list. All-in-one app with a minimalist UI."></meta>
+			</Helmet>
 			<Header>
 				<Nav>
 					<NavList />

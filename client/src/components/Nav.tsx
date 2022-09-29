@@ -14,7 +14,7 @@ export default function Nav ({children} : Props) {
 	const handleClick = (e: React.SyntheticEvent<HTMLImageElement | HTMLElement>) => {
 		const target = e.target as HTMLImageElement | HTMLElement
     
-		if (target.nodeName === 'IMG' || target.nodeName === 'LI') {
+		if (target === menu.current) {
 			menu.current.classList.toggle('active')
 			setIsActive(prev => !prev)
 		} 

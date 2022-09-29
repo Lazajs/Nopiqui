@@ -1,15 +1,15 @@
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css'
-import './styles/index.css'
+import './styles/index.scss'
 import Nav from 'components/Nav'
 import NavHome from 'components/NavHome'
-import Back from 'components/Back'
 import RichEditor from 'components/RichEditor'
 import useCreate from './hooks/useCreate'
 import { useNavigate } from 'react-router-dom'
 import { UserLogged, NoteType } from 'types'
-import {Dispatch, SetStateAction} from 'react'
+import {Dispatch, SetStateAction, useCallback} from 'react'
 import {useState} from 'react'
 import {EditorState} from 'draft-js'
+import Helmet from 'react-helmet'
 
 type Args = {
   setLogged: Dispatch<SetStateAction<UserLogged>>, 
@@ -26,8 +26,7 @@ export default function Create () {
 
 	const createNote = async ({setLogged, title, content, userId}: Args) => {
 		//received title and content are RAW from Draft.
-		const res: NoteType = await create({title: title, content: content, userId: userId})
-
+		const res: NoteType = await create({title: title, content: content, userId: userId, archived: false})
 		if (res.id !== undefined) {
 			setLogged((prev: UserLogged)  => {
 				const {notes} = prev
@@ -40,11 +39,15 @@ export default function Create () {
 
 	return (
 		<div className='page'>
+			<Helmet>
+				<title>Nopiqui | Create</title>
+				<meta name="description" content="Create your notes using Nopiqui and share them to your friends." />
+			</Helmet>
+
 			<Nav>
 				<NavHome />
 			</Nav>
 
-			<Back to='/home' />
 			<RichEditor doNote={createNote} contentHandlers={contentHandlers} titleHandlers={titleHandlers} />
      
 		</div>

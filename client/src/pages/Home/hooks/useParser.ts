@@ -11,11 +11,11 @@ export default function useParser () {
 			if (e.title.includes('blocks') !== true) return e
 			const {content, title} = e
 			return {
-				archived: e.archived,
 				title: JSON.parse(title).blocks[0].text,
 				content: JSON.parse(String(content)).blocks[0].text,
 				userId: e.userId,
-				id: e.id
+				id: e.id,
+				archived: e.archived
 			}
 		})
 

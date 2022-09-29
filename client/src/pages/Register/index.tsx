@@ -7,6 +7,7 @@ import useRegisterUser from 'pages/Register/hooks/useRegisterUser'
 import {useNavigate} from 'react-router-dom'
 import useForm from './hooks/useForm'
 import Spinner from 'components/Spinner'
+import { Helmet } from 'react-helmet'
 
 type InvalidateType = {is: boolean | string, comment: string}
 
@@ -68,6 +69,10 @@ export default function Register () {
 
 	return (
 		<> 
+			<Helmet>
+				<title>Nopiqui | Register </title>
+				<meta name="description" content="Register to start using Nopiqui" />
+			</Helmet>
 			<Header />
 			<form onSubmit={handleSubmit} className='login'>
 				<input name='username' onChange={({target})=> dispatch({payload: target.value, type: 'username'})} value={String(username)} placeholder='Your username' type='text' />

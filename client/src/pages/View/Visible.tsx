@@ -1,5 +1,6 @@
 import {NoteType} from 'types'
 import draftToHTML from 'draftjs-to-html'
+import Helmet from 'react-helmet'
 
 type Props = {
   data?: NoteType
@@ -8,12 +9,19 @@ type Props = {
 export default function Visible ({data}: Props) {
 	const {title, content} = data as any
 
+	const parsedTitle = JSON.parse(title).blocks[0].text
+	const parsedContent =JSON.parse(content).blocks[0].text
 	const titleMarkup = draftToHTML(JSON.parse(title))
 	const contentMarkup = draftToHTML(JSON.parse(content))
-
 	return (
 		<section className='visualize'>
-			<h1 className='title' dangerouslySetInnerHTML={{__html: titleMarkup}}></h1>
+
+			<Helmet> 
+				<title>Nopiqui | {parsedTitle}</title> 
+				<meta name="description" content={parsedContent ? parsedContent : 'Note created with Nopiqui.'} />
+			</Helmet>
+
+			<h1 className='title' dangerouslySetInnerHTML={{__html: titleMarkup}}></h1> 
 			<div className='content' dangerouslySetInnerHTML={{__html: contentMarkup}}></div>
 		</section>
 	)

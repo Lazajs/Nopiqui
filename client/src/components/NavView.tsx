@@ -1,4 +1,3 @@
-import Back from './Back'
 import NoteOptions from 'components/NoteOptions'
 import { useParams } from 'react-router-dom'
 import {SetStateAction, Dispatch} from 'react'
@@ -13,7 +12,6 @@ export default function NavView ({toggleLoading}: Props) {
 	
 	return (
 		<nav className="view__nav">
-			<Back to='/home' />
 			<NoteOptions loading={toggleLoading} id={noteId as string} />
 		</nav>
 	)

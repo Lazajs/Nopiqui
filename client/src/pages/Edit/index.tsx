@@ -1,13 +1,13 @@
 import Nav from 'components/Nav'
 import NavHome from 'components/NavHome'
-import Back from 'components/Back'
 import RichEditor from 'components/RichEditor'
 import { EditorState, convertFromRaw } from 'draft-js'
-import {Dispatch,  SetStateAction, useEffect, useState} from 'react'
+import {Dispatch,  SetStateAction, useEffect, useState, useCallback} from 'react'
 import {UserLogged, NoteType} from 'types'
 import useEdit from './hooks/useEdit'
 import {useNavigate, useLocation, useParams, Navigate} from 'react-router-dom'
 import Spinner from 'components/Spinner'
+import Helmet from 'react-helmet'
 
 type Args = {
   setLogged: Dispatch<SetStateAction<UserLogged>>, 
@@ -60,7 +60,7 @@ export default function Edit () {
 			setLogged((prev: UserLogged)  => {
 				const {notes} = prev
 				const filtered = notes.filter((e: NoteType) => e.id !== noteId) 
-				navigate(`/view/${res.id}`)
+				navigate(`/${res.id}/view`)
 				return {...prev, notes: filtered.concat(res)}
 			})
 		}
@@ -70,11 +70,14 @@ export default function Edit () {
 
 	return (
 		<div className='page'>
+			<Helmet>
+				<title>Nopiqui | Edit</title>
+			</Helmet>
+
 			<Nav>
 				<NavHome />
 			</Nav>
 
-			<Back to="/home" />
 			{title !== undefined ? <RichEditor doNote={editNote} titleHandlers={titleHandlers} contentHandlers={contentHandlers} /> : <Spinner />}
      
 		</div>

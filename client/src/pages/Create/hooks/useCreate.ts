@@ -4,15 +4,16 @@ type Props = {
   title: string,
   content: string,
   userId: string,
+	archived: boolean
 }
 export default function useSave () {
-	const request = async ({title, content, userId} : Props): Promise<NoteType> => {
+	const request = async ({title, content, userId, archived} : Props): Promise<NoteType> => {
 		const OPTIONS = {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
 			},
-			body: JSON.stringify({title, content, userId}),
+			body: JSON.stringify({title, content, userId, archived}),
 			credentials: 'include'
 		} as RequestInit
 

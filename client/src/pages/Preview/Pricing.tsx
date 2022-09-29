@@ -36,7 +36,7 @@ export default function Pricing () {
 
 	return (
 		<article id='pricing' className="pricing">
-			<h2>Pricing</h2>
+			<h2>Pricing &amp; contact</h2>
 			<p>Good news for you: <i>Nopiqui</i> is completly <b>free</b>!</p>
 			<p>Want to <span>contact us</span> anyway?</p>
 			<form onSubmit={handleSubmit} className="contact">

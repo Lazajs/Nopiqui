@@ -9,6 +9,7 @@ import { useParams } from 'react-router-dom'
 import { UserRecentLoggedCTX } from 'context/UserRecentLogged'
 import { Link } from 'react-router-dom'
 import whiteboard from 'assets/images/whiteboard.svg'
+import Loading from './Loading'
 
 export default function View () {
 	const {logged} = useContext(UserRecentLoggedCTX) as LogUser
@@ -27,12 +28,7 @@ export default function View () {
 			.catch(console.log)
 	}, [])
 
-	if (isLoading) return (
-		<div className='box spinning'>
-			<p>Loading...</p>
-		</div>
-	)
-
+	
 	if (error) return (
 		<aside className='error'>
 			<h3>Sorry, this note is not available</h3>
@@ -45,10 +41,12 @@ export default function View () {
 	return (
 		<>
 			{data && data.userId && logged && logged.id === data.userId ? <NavView toggleLoading={setIsLoading} /> : ''}
-			<main className='wrapper'>
-				<div className='tools'></div>
-				{data ? <Visible data={data}/> : <Spinner/>}
-			</main>
+			{	isLoading  ? <Loading /> :
+				<main className='wrapper'>
+					<div className='tools'></div>
+					{data ? <Visible data={data}/> : <Spinner/>}
+				</main>
+			}
 		</>
 
 	)

@@ -1,0 +1,55 @@
+.holder {
+  border: red;
+  margin: 7rem .1rem;
+  background-color: #fff;
+
+  .toolbar {
+    border: none;
+    border-bottom: 1px solid black;
+    border-top: 1px solid black;
+    background-color: transparent;
+    font-family: 'Assistant';
+    font-size: 2rem;
+    width: 100%;
+    padding: 6px 5px 0;
+    display: flex;
+    justify-content: flex-start;
+    background: white;
+    flex-wrap: wrap;
+    font-size: 15px;
+    margin-bottom: 5px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    align-items: stretch;
+  }
+
+  .rdw-dropdown-wrapper {
+    width: 9rem;
+    height: 3rem;
+  }
+  
+  .rdw-option-wrapper {
+    &::selection {
+      color: #000f;
+      background-color: transparent;
+    }
+
+    width: 4rem;
+    height: 3rem;
+  }
+
+  .editor.content {
+    min-height: 20rem;   
+  }
+
+  .rdw-emoji-modal {
+    position: absolute;
+    left: -15rem;
+  }
+
+  .rdw-dropdownoption-default {
+    height: 3rem;
+  }
+  
+}

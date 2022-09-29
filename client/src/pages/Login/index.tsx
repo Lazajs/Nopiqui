@@ -1,19 +1,15 @@
 import 'components/styles/Form.scss'
 import React,{useEffect, useState, useContext} from 'react'
 import Header from 'components/Header'
-import {UserLogged, UserLogInData} from 'types'
+import {UserLogInData, LogUser} from 'types'
 import {Link, useLocation, useNavigate} from 'react-router-dom'
 import useLoginUser from 'pages/Login/hooks/useLoginUser'
 import useForm from './hooks/useForm'
 import { UserRecentLoggedCTX } from 'context/UserRecentLogged'
 import Spinner from 'components/Spinner'
+import { Helmet } from 'react-helmet'
 
 type InvalidateType = {is: boolean, comment: string}
-
-type LogUser = {
-  logged: UserLogged,
-  setLogged: React.Dispatch<React.SetStateAction<UserLogged>>
-}
 
 type LocationState = {
   state: {
@@ -21,10 +17,8 @@ type LocationState = {
   }
 }
 
-
-
 export default function Login () {
-	const {logged, setLogged} = useContext(UserRecentLoggedCTX) as LogUser
+	const { setLogged } = useContext(UserRecentLoggedCTX) as LogUser
 	const [loginInfo, dispatch] = useForm()
 	const [loading, setLoading] = useState<boolean>(false)
 	const { username, password } = loginInfo
@@ -68,7 +62,12 @@ export default function Login () {
 	}
 
 	return (
-		<section className='wrapper'>
+		<>
+			<Helmet>
+				<title>Nopiqui | Log In</title>
+				<meta name="description" content="Log In to start using Nopiqui" />
+			</Helmet>
+
 			<Header />
 			<form onSubmit={handleSubmit} className='login'>
 				{state?.from === '/register' ? <small>Welcome! Log In to continue</small> : ''}
@@ -78,6 +77,6 @@ export default function Login () {
 				{ loading ? <Spinner /> :  <button type='submit'>Log In</button>}
 				<p>Or <b><Link to='/register'>Register</Link></b></p>
 			</form>
-		</section>
+		</>
 	)
 }

@@ -7,6 +7,7 @@ import { UserLogged, NoteType } from 'types'
 import './styles/index.scss'
 import 'pages/Home/styles/NotesSection.scss'
 import NoteList from 'pages/Home/NoteList'
+import Helmet from 'react-helmet'
 
 export default function Archive () {
 	const {logged} = useContext(UserRecentLoggedCTX) as LogUser
@@ -26,6 +27,11 @@ export default function Archive () {
 	
 	return (
 		<aside className='archive'>
+			<Helmet>
+				<title>Nopiqui | Home - Archive</title>
+				<meta name="description" content="Archived notes" />
+			</Helmet>
+
 			<h2>Archive</h2>
 			<div className='main'>
 				{(loadData && loadData.notes) && <NoteList notes={loadData.notes}/> }
