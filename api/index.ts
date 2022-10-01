@@ -11,6 +11,7 @@ import dotenv from 'dotenv'
 import cookieParser from 'cookie-parser'
 import path from 'path'
 import './db/models/Note'
+import notFound from './routes/notFound'
 
 dotenv.config()
 const app = express()
@@ -34,6 +35,7 @@ app.use('/login', login)
 app.use('/contact', contact)
 app.use('/notes', notes)
 app.use('/logout', logout)
+app.use('404', notFound)
 
 app.get('*', (req, res) => {                 
 	res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'))                               

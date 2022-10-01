@@ -12,8 +12,6 @@ import Session from 'components/Session'
 import NotFound from 'pages/404'
 import Archive from 'pages/Home/Archive'
 import Helmet from 'react-helmet'
-import NavHome from 'components/NavHome'
-import Nav from 'components/Nav'
 
 function App () {
 	return (

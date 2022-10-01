@@ -24,7 +24,7 @@ export default function NotesSection () {
 	},[logged])
 
 	return (
-		<main className="main">
+		<main className="main" data-testid='main'>
 			{
 				loadData && <NoteList notes={loadData.notes} /> 
 			}
