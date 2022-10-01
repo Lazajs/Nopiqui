@@ -11,5 +11,5 @@ type UserInformation = {
 export default function Session () {
 	const {logged} = useContext(UserRecentLoggedCTX) as UserInformation
 
-	return logged?.id !== '' ? <Navigate to='/home' /> : <Outlet />
+	return logged && logged?.id !== '' && logged.username !== '' ? <Navigate to='/home' /> : <Outlet />
 }

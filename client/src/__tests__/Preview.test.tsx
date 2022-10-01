@@ -1,18 +1,51 @@
 import '@testing-library/jest-dom/extend-expect'
-import {render, cleanup, screen} from '@testing-library/react'
-import {MemoryRouter as Router } from 'react-router-dom'
+import {render, screen, fireEvent} from '@testing-library/react'
+import {MemoryRouter} from 'react-router-dom'
 import App from 'App'
 
 describe('Preview', ()=> {
-	afterEach(cleanup)
+	const route = ['/']
 
-	it('renders correctly', ()=> {
-		render(<Router initialEntries={['/']}><App/></Router>)
+	it('renders', ()=> {
+		render(
+			<MemoryRouter initialEntries={route}>
+				<App />
+			</MemoryRouter>
+		)
 	})
 
-	it('matches route', ()=> {
-		const Page = render(<Router initialIndex={0} initialEntries={['/']}><App/></Router>)
-		screen.debug()
+	it('has title', ()=> {
+		render(
+			<MemoryRouter initialEntries={route}>
+				<App />
+			</MemoryRouter>
+		)
+
+		expect(screen.getAllByText('Nopiqui')[0]).toBeInTheDocument()
 	})
-  
+
+	it('Nav is working and redirects', ()=> {
+		render(
+			<MemoryRouter initialEntries={route}>
+				<App />
+			</MemoryRouter>
+		)
+		
+		const getStarted = screen.getByText('Get started')
+		fireEvent.click(getStarted)
+
+		expect(getStarted).not.toBeInTheDocument()
+	})
+
+	it('Have contact form', ()=> {
+		render(
+			<MemoryRouter initialEntries={route}>
+				<App />
+			</MemoryRouter>
+		)
+
+		expect(screen.getByText('Pricing & contact')).toBeInTheDocument()
+		expect(screen.getByPlaceholderText('your@email.com')).toBeInTheDocument()
+		expect(screen.getByPlaceholderText('Your message')).toBeInTheDocument()
+	})
 })
