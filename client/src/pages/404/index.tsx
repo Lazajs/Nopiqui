@@ -1,7 +1,8 @@
 import whiteboard from 'assets/images/whiteboard.svg'
 import { Link } from 'react-router-dom'
 import './styles/index.scss'
-import { Helmet } from 'react-helmet'
+// import { Helmet } from 'react-helmet'
+import Helmet from 'react-helmet'
 
 export default function NotFound () {
 	return (

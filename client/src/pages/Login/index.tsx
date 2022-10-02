@@ -7,7 +7,7 @@ import useLoginUser from 'pages/Login/hooks/useLoginUser'
 import useForm from './hooks/useForm'
 import { UserRecentLoggedCTX } from 'context/UserRecentLogged'
 import Spinner from 'components/Spinner'
-import { Helmet } from 'react-helmet'
+import  Helmet from 'react-helmet'
 
 type InvalidateType = {is: boolean, comment: string}
 
