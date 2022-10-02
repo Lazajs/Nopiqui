@@ -31,7 +31,6 @@ router.get('/:id',isLogged, async (req,res, next) => {
 
 	if (req.params.id === '') next({type: 'bad'})
 	const findIt = await notesModel.findById(req.params.id)
-
 	if (findIt) {
 		if (findIt.archived === true && res.locals.logged === true) {
 			res.send(findIt)

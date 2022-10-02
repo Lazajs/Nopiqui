@@ -22,37 +22,34 @@ export default function RichEditor ({doNote, titleHandlers, contentHandlers}: Pr
 	const [editorState, setEditorState] = contentHandlers
 	const button = useRef<any>()
 
-	let title = ''
-	let rawTitleString = ''
-
 	useEffect(()=> {
 		if (titleState !== undefined && button.current) {
 			const rawTitle = convertToRaw(titleState.getCurrentContent())
-			rawTitleString = JSON.stringify(rawTitle)
-			title = rawTitle.blocks[0].text
+			const title = rawTitle.blocks[0].text
 			if (title.length > 1 && title.length < 30) {
 				button.current.disabled = false
 			} else button.current.disabled = true
 		}
-
 	},[titleState])
-
 
 	const handleSave = async () => {
 		const rawContentString = JSON.stringify(convertToRaw(editorState.getCurrentContent()))
+		const rawTitleString = JSON.stringify(convertToRaw(titleState.getCurrentContent()))
 		const {id} = logged   
-		setIsLoading(true)
-		await doNote({setLogged: setLogged, title: rawTitleString, content: rawContentString, userId: id})
-			.catch(console.log)
-		setIsLoading(false)
-    
+
+		if (rawTitleString) {
+			setIsLoading(true)
+			await doNote({setLogged: setLogged, title: rawTitleString, content: rawContentString, userId: id})
+				.catch(console.log)
+			setIsLoading(false)
+		} 
 	}
 
 	return (
 		<>
 			<article className='holder'>
 				<Editor 
-					placeholder='Title'
+					placeholder='Title (max: 30)'
 					editorState={titleState}
 					onEditorStateChange={setTitleState}
 					wrapperClassName='wrapper title'

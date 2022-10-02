@@ -1,8 +1,9 @@
 .holder {
   border: red;
-  margin: 7rem .1rem;
+  margin: 7rem auto;
   background-color: #fff;
-
+  max-width: 110rem;
+  
   .toolbar {
     border: none;
     border-bottom: 1px solid black;
@@ -22,6 +23,10 @@
     -moz-user-select: none;
     user-select: none;
     align-items: stretch;
+  }
+
+  .editor.title {
+    font-size: 4rem;
   }
 
   .rdw-dropdown-wrapper {

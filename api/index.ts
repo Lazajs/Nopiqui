@@ -18,7 +18,7 @@ const app = express()
 
 const corsOptions = {
 	credentials: true,
-	origin: ['http://localhost:3000', 'http://localhost:3001'],
+	origin: false,
 }
 
 connectDB
@@ -43,4 +43,4 @@ app.get('*', (req, res) => {
 
 app.use(handleError)
 
-app.listen(process.env.PORT === undefined ? 3001 : process.env.PORT, ()=> console.log('listening'))
+app.listen(process.env.PORT || 3001, ()=> console.log('listening'))

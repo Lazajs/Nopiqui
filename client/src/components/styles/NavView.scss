@@ -10,6 +10,17 @@
   padding: 3rem;
   background-color: #FFF4C5;
 
+  a {
+    font-weight: 700;
+    font-size: 2rem;
+    font-family: 'Assistant';
+    padding: 1rem 2rem;
+
+    &:hover {
+      background-color: #ffeea3;
+
+    }
+  }
 
   .backbtn {
     position: unset;

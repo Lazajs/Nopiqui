@@ -9,7 +9,10 @@
     "commit": "npm run co --workspace=client",
     "lint": "npx eslint . --fix",
     "build:client": "npm run build --workspace=client",
-    "test:client" : "npm run test --workspace=client"
+    "build:api": "npm run build --workspace=api",
+    "build": "npm run build:client && npm run build:api",
+    "test:client" : "npm run test --workspace=client",
+    "start" : "npm run start --workspace=api"
   },
   "workspaces": [
     "api",

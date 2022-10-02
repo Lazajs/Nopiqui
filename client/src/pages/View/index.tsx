@@ -10,6 +10,7 @@ import { UserRecentLoggedCTX } from 'context/UserRecentLogged'
 import { Link } from 'react-router-dom'
 import whiteboard from 'assets/images/whiteboard.svg'
 import Loading from './Loading'
+import Share from './Share'
 
 export default function View () {
 	const {logged} = useContext(UserRecentLoggedCTX) as LogUser
@@ -40,10 +41,10 @@ export default function View () {
 
 	return (
 		<>
-			{data && data.userId && logged && logged.id === data.userId ? <NavView toggleLoading={setIsLoading} /> : ''}
+			{data && data.userId && logged && logged.id === data.userId ? <NavView toggleLoading={setIsLoading} /> : <h2 className='water'>Created with Nopiqui</h2>}
 			{	isLoading  ? <Loading /> :
 				<main className='wrapper'>
-					<div className='tools'></div>
+					<Share />
 					{data ? <Visible data={data}/> : <Spinner/>}
 				</main>
 			}

@@ -21,7 +21,6 @@ const isLogged: RequestHandler = async (req, res, next) => {
 	if (req.cookies && req.cookies.token !== undefined) {
 		const {token} = req.cookies
 		const decoded = jwt.verify(JSON.parse(token), process.env.JWT_SECRET as string)
-		console.log(decoded)
 		res.locals.logged = decoded ? true : false
 	}
 	next()

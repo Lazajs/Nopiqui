@@ -1,5 +1,15 @@
+.water {
+  opacity: .1;
+  text-align: center;
+  font-family: 'Bad Script';
+  margin-top: 1rem;
+  user-select: none;
+}
+
 .wrapper {
   padding: 2rem; 
+  max-width: 110rem;
+  margin: auto;
 
   .tools {
     .backbtn {
@@ -51,7 +61,7 @@
     margin: auto;
 
     .title {
-      font-size: 3rem;
+      font-size: 4rem;
       margin: 1rem;
       text-align: center;
     }

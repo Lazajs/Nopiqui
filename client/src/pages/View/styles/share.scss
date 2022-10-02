@@ -1,0 +1,25 @@
+button {
+  border: 1px solid #fff4c5;
+  padding: 1rem;
+  font-family: 'Assistant';
+  font-size: 1.8rem;
+  background-color: transparent;
+  display: block;
+  margin-left: auto;
+  font-weight: 700;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.popup {
+  width: fit-content;
+  position: absolute;
+  background-color: #000a;
+  color: #fff;
+  padding: 1rem 2rem;
+  font-family: 'Assistant';
+  white-space: nowrap;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
