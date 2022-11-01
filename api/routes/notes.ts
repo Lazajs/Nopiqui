@@ -2,10 +2,11 @@ import { Router } from 'express'
 import notesModel from '../db/models/Note'
 import UserModel from '../db/models/User'
 import logged from './middlewares/logged'
-import {  UserData } from '../types'
+import {  NoteType, UserData } from '../types'
 import populate from './middlewares/populate'
 import archive from './archive'
 import {isLogged} from './middlewares/logged'
+import {HydratedDocument} from 'mongoose'
 
 interface ToSave extends UserData {
   save: () => Promise<void>
@@ -53,14 +54,15 @@ router.post('/create', logged, async (req,res, next) => {
 	if (isEqualExistent !== undefined && isEqualExistent?.content === content && isEqualExistent?.title === title) {
 		next({type: 'conflict'})
 	} else if (foundUser !== undefined && foundUser?.notes !== undefined) {
-		const created = new notesModel({userId: userId, content: content, title: title, archived: false, created: new Date().toLocaleDateString()})
-		const {_id} = created as any
-		foundUser.notes = foundUser.notes.concat(_id)
+		console.log(foundUser.username)
+		const created: HydratedDocument<NoteType> = new notesModel({userId: userId, content: content, title: title, archived: false, created: new Date().toLocaleDateString(), author: foundUser.username})
+		const {id} = created 
+		foundUser.notes = foundUser.notes.concat(id)
 		await foundUser.save()
 		await created.save()
 
 		res.send(created).status(201)
-	} else {
+	} else {	
 		next({type: 'auth'})
 	}
 })

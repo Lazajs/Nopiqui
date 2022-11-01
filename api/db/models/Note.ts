@@ -1,11 +1,12 @@
 import mongoose from 'mongoose'
 
 const noteSchema = new mongoose.Schema({
-	title: String,
+	title: {type: String, required: true},
 	content: String,
-	userId: String,
-	created: String,
-	archived: Boolean
+	userId: {type: String, required: true},
+	created: {type: String, required: true},
+	archived: {type: Boolean, required: true},
+	author: {type: String, required: true}
 })
 
 

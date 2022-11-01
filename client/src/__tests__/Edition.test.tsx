@@ -29,7 +29,10 @@ function Container () {
 		return EditorState.createWithContent(fromRaw)
 	})
 
-	const editNote = async ({setLogged, title, content, userId}: Args) => {return}
+	const editNote = async ({setLogged, title, content, userId}: Args) => {
+		const _unusedVar = setLogged + title + content + userId
+		return
+	}
 
 
 	return (

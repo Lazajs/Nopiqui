@@ -10,7 +10,7 @@ export default function NoteList ({notes}: Props) {
 		<>
 			{
 				notes.map((e: NoteType) =>{
-					return <Note title={e.title} content={e?.content} id={e.id} key={e.id} />
+					return <Note title={e.title} content={e?.content} id={e.id} key={e.id} created={e.created} />
 				})
 			}
 		</>

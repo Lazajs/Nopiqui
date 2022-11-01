@@ -5,10 +5,11 @@ export interface UserLogInData  {
 export interface NoteType {
   title: string,
   content?: string,
-  created?: string,
+  created: string,
   archived?: boolean,
   id: string,
   userId?: string
+  author?:string
 }
 
 export interface UserLogged {

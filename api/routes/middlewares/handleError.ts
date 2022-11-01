@@ -2,7 +2,7 @@ import { ErrorRequestHandler } from 'express'
 
 type ErrorCase = { type: 'auth' | 'missing' | 'conflict' | 'bad' }
 
-const handleError: ErrorRequestHandler = (error: ErrorCase, req, res, next) => {
+const handleError: ErrorRequestHandler = (error: ErrorCase, req, res, _next) => {
 	switch (error?.type){
 	case 'auth': 
 		res.status(401).send({error: 'Action not authorized'})
