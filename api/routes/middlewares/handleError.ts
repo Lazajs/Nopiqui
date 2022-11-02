@@ -1,4 +1,5 @@
 import { ErrorRequestHandler } from 'express'
+import path from 'path'
 
 type ErrorCase = { type: 'auth' | 'missing' | 'conflict' | 'bad' }
 
@@ -17,7 +18,7 @@ const handleError: ErrorRequestHandler = (error: ErrorCase, req, res, _next) => 
 		res.status(400).send({error: 'Bad at request'})
 		break
 	default: 
-		res.status(444).send({error: 'No response'})
+		res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'))                  
 	}
 }
 
