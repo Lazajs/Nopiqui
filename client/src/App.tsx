@@ -1,8 +1,8 @@
-import './App.scss' 
+import './App.scss'
 import Login from 'pages/Login'
 import Register from 'pages/Register'
 import Preview from 'pages/Preview'
-import Home from 'pages/Home' 
+import Home from 'pages/Home'
 import Create from 'pages/Create'
 import View from 'pages/View'
 import { Routes, Route, Navigate } from 'react-router-dom'
@@ -14,14 +14,14 @@ import Archive from 'pages/Home/Archive'
 import Helmet from 'react-helmet'
 
 function App () {
-	return (
+  return (
 		<>
 			<Helmet>
 				<title>Nopiqui</title>
 			</Helmet>
 
 			<Routes>
-				<Route element ={<Session />}> 
+				<Route element ={<Session />}>
 					<Route path='/' element={<Preview />} />
 					<Route path='/register' element={<Register />} />
 					<Route path='/login' element={<Login />} />
@@ -41,7 +41,7 @@ function App () {
 				<Route path='*' element={<Navigate to='/404'/>} />
 			</Routes>
 		</>
-	)
+  )
 }
 
 export default App

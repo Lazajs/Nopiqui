@@ -3,12 +3,11 @@ type Props = {
 }
 
 export default function () {
-	const request = async ({noteId}: Props) =>{
-		const result = await fetch(`/notes/${noteId}`)
-		const json = await result.json()
-		
-		return json
+  const request = async ({ noteId }: Props) => {
+    const result = await fetch(`/notes/${noteId}`)
+    const json = await result.json()
 
-	}
-	return request
+    return json
+  }
+  return request
 }
