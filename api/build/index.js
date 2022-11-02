@@ -37,6 +37,7 @@ app.use('/notes', notes_1.default);
 app.use('/logout', logout_1.default);
 app.use('404', notFound_1.default);
 app.get('*', (req, res) => {
+    console.log(path_1.default.resolve(__dirname, '../client/build', 'index.html'));
     res.sendFile(path_1.default.resolve(__dirname, '../client/build', 'index.html'));
 });
 app.use(handleError_1.default);
