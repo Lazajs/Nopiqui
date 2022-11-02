@@ -38,7 +38,8 @@ app.use('/logout', logout)
 app.use('404', notFound)
 
 app.get('*', (req, res) => {                 
-	res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'))                               
+	console.log(path.resolve(__dirname, '../client/build', 'index.html'))
+	res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'))                  
 })
 
 app.use(handleError)
