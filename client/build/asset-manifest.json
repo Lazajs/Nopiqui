@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/static/css/main.2e24b81f.css",
+    "main.js": "/static/js/main.92b29a98.js",
+    "static/media/standing-woman.png": "/static/media/standing-woman.1bbe856a0934b14fa708.png",
+    "static/media/Assistant-VariableFont_wght.ttf": "/static/media/Assistant-VariableFont_wght.b75601d31d2637c2010a.ttf",
+    "static/media/BadScript-Regular.ttf": "/static/media/BadScript-Regular.a7245c626448ab33b310.ttf",
+    "static/media/handwriting.jpg": "/static/media/handwriting.4a8de1ba089ffaf9fd7e.jpg",
+    "static/media/sit-person.jpg": "/static/media/sit-person.b3989aaca67031d573d0.jpg",
+    "static/media/isotipo.svg": "/static/media/isotipo.7bf08cc0fa57df4125a6b5276d612c1e.svg",
+    "static/media/edit.svg": "/static/media/edit.67113e25b17c568681d861ae26b4e852.svg",
+    "static/media/trash.svg": "/static/media/trash.f8cd3b51ab633735beb47c05794183bb.svg",
+    "static/media/archive.svg": "/static/media/archive.2cff88e0bb87b117780ffe3cd5109f49.svg",
+    "static/media/dots.svg": "/static/media/dots.455cdeab51ccc4f615d1093df4dc58ab.svg",
+    "static/media/whiteboard.svg": "/static/media/whiteboard.d14eb7c6df8d688c41a986d953418861.svg",
+    "static/media/add.svg": "/static/media/add.e5cd68e58ecd486bb4c60a74e3f45dce.svg",
+    "index.html": "/index.html",
+    "static/media/x.svg": "/static/media/x.ee6024febcd1ca0f0dbf8765d20db4f2.svg",
+    "static/media/burger.svg": "/static/media/burger.b6e182a07d1f56aefd26cc69c941c109.svg",
+    "main.2e24b81f.css.map": "/static/css/main.2e24b81f.css.map",
+    "main.92b29a98.js.map": "/static/js/main.92b29a98.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.2e24b81f.css",
+    "static/js/main.92b29a98.js"
+  ]
+}
