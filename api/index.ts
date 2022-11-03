@@ -37,8 +37,9 @@ app.use('/notes', notes)
 app.use('/logout', logout)
 app.use('404', notFound)
 
-app.get('*', (req, res) => { 
-	res.redirect('/')
+app.get('*', (req, res) => {                 
+	res.sendFile(path.join(__dirname, '../client/build/index.html'))
+	// res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'))                  
 })
 
 app.use(handleError)

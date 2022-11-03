@@ -14,6 +14,7 @@ const handleError_1 = __importDefault(require("./routes/middlewares/handleError"
 const cors_1 = __importDefault(require("cors"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const cookie_parser_1 = __importDefault(require("cookie-parser"));
+const path_1 = __importDefault(require("path"));
 require("./db/models/Note");
 const notFound_1 = __importDefault(require("./routes/notFound"));
 dotenv_1.default.config();
@@ -36,7 +37,8 @@ app.use('/notes', notes_1.default);
 app.use('/logout', logout_1.default);
 app.use('404', notFound_1.default);
 app.get('*', (req, res) => {
-    res.redirect('/');
+    res.sendFile(path_1.default.join(__dirname, '../client/build/index.html'));
+    // res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'))                  
 });
 app.use(handleError_1.default);
 app.listen(process.env.PORT || 3001, () => console.log('listening'));
