@@ -37,9 +37,9 @@ app.use('/notes', notes)
 app.use('/logout', logout)
 app.use('404', notFound)
 
-app.get('*', (req, res) => {                 
-	res.sendFile(path.join(__dirname, '../client/build/index.html'))
-	// res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'))                  
+app.get('*', (req, res) => {    
+	if (process.env?.ENVIROMENT) res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'))                 
+	else res.sendFile(path.resolve(__dirname, '../../client/build', 'index.html'))                  
 })
 
 app.use(handleError)
