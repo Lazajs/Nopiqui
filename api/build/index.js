@@ -37,8 +37,11 @@ app.use('/notes', notes_1.default);
 app.use('/logout', logout_1.default);
 app.use('404', notFound_1.default);
 app.get('*', (req, res) => {
-    res.sendFile(path_1.default.join(__dirname, '../client/build/index.html'));
-    // res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'))                  
+    var _a;
+    if ((_a = process.env) === null || _a === void 0 ? void 0 : _a.ENVIROMENT)
+        res.sendFile(path_1.default.resolve(__dirname, '../client/build', 'index.html'));
+    else
+        res.sendFile(path_1.default.resolve(__dirname, '../../client/build', 'index.html'));
 });
 app.use(handleError_1.default);
 app.listen(process.env.PORT || 3001, () => console.log('listening'));
