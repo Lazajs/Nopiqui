@@ -5,7 +5,7 @@ import dotenv from 'dotenv'
 dotenv.config()
 
 const logged: RequestHandler = async (req, res, next) => {
-	if (!req.cookies && req.cookies === undefined) next({type: 'auth'})
+	if (!req.cookies && req.cookies === undefined) next({type: 'redirect'})
   
 	const {token} = req.cookies
 	if (token) {
@@ -13,7 +13,7 @@ const logged: RequestHandler = async (req, res, next) => {
 		res.locals.decoded = decoded 
 		next()
 	} else {
-		next({type: 'auth'})
+		next({type: 'redirect'})
 	}
 }
 

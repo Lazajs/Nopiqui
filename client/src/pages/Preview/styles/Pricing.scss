@@ -36,7 +36,7 @@
     background-color: #FFF4C5;
     padding: 1rem;
     height: 30rem;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     margin: 3rem 0;
     border-radius: 10px;
@@ -74,7 +74,8 @@
       color: #FFF4C5;
       background-color: #6c6c6c;
       display: block;
-      margin: auto;
+      margin: 0 auto;
+      margin-bottom: 2rem;
       cursor: pointer;
 
       &:hover {

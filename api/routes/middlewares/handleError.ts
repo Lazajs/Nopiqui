@@ -1,7 +1,6 @@
 import { ErrorRequestHandler } from 'express'
-import path from 'path'
 
-type ErrorCase = { type: 'auth' | 'missing' | 'conflict' | 'bad' }
+type ErrorCase = { type: 'redirect' | 'auth' | 'missing' | 'conflict' | 'bad' }
 
 const handleError: ErrorRequestHandler = (error: ErrorCase, req, res, _next) => {
 	switch (error?.type){
@@ -17,8 +16,11 @@ const handleError: ErrorRequestHandler = (error: ErrorCase, req, res, _next) => 
 	case 'bad':
 		res.status(400).send({error: 'Bad at request'})
 		break
+	case 'redirect': 
+		res.redirect('/')
+		break
 	default: 
-		res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'))                  
+		res.status(444).send({error: 'No response'})
 	}
 }
 

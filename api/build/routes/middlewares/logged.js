@@ -18,7 +18,7 @@ const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
 const logged = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     if (!req.cookies && req.cookies === undefined)
-        next({ type: 'auth' });
+        next({ type: 'redirect' });
     const { token } = req.cookies;
     if (token) {
         const decoded = jsonwebtoken_1.default.verify(JSON.parse(token), process.env.JWT_SECRET);
@@ -26,7 +26,7 @@ const logged = (req, res, next) => __awaiter(void 0, void 0, void 0, function* (
         next();
     }
     else {
-        next({ type: 'auth' });
+        next({ type: 'redirect' });
     }
 });
 const isLogged = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
