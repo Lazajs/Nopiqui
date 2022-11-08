@@ -33,7 +33,7 @@ const isLogged = (req, res, next) => __awaiter(void 0, void 0, void 0, function*
     if (req.cookies && req.cookies.token !== undefined) {
         const { token } = req.cookies;
         const decoded = jsonwebtoken_1.default.verify(JSON.parse(token), process.env.JWT_SECRET);
-        res.locals.logged = decoded ? true : false;
+        res.locals.logged = decoded ? decoded.id : false;
     }
     next();
 });

@@ -2,6 +2,11 @@ import { RequestHandler } from 'express'
 import jwt from 'jsonwebtoken'
 import dotenv from 'dotenv'
 
+type JWTDecoded = {
+	id: string,
+	username:string
+}
+
 dotenv.config()
 
 const logged: RequestHandler = async (req, res, next) => {
@@ -20,8 +25,8 @@ const logged: RequestHandler = async (req, res, next) => {
 const isLogged: RequestHandler = async (req, res, next) => {
 	if (req.cookies && req.cookies.token !== undefined) {
 		const {token} = req.cookies
-		const decoded = jwt.verify(JSON.parse(token), process.env.JWT_SECRET as string)
-		res.locals.logged = decoded ? true : false
+		const decoded = jwt.verify(JSON.parse(token), process.env.JWT_SECRET as string) as JWTDecoded
+		res.locals.logged = decoded ? decoded.id : false
 	}
 	next()
 }

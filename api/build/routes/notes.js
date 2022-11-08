@@ -36,15 +36,11 @@ router.get('/:id', logged_2.isLogged, (req, res, next) => __awaiter(void 0, void
         next({ type: 'bad' });
     const findIt = yield Note_1.default.findById(req.params.id);
     if (findIt) {
-        if (findIt.archived === true && res.locals.logged === true) {
+        if (!findIt.archived)
             res.send(findIt);
-        }
-        else if (!findIt.archived) {
+        else if (findIt.archived && findIt.userId === res.locals.logged)
             res.send(findIt);
-        }
-        else if (findIt.archived && !res.locals.logged) {
-            next({ type: 'auth' });
-        }
+        next({ type: 'auth' });
     }
     else {
         next({ type: 'missing' });
