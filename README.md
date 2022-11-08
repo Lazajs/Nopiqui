@@ -22,11 +22,8 @@ You'll need these .env variables:
 **For the api directory:**
 ``
   ENVIROMENT="DEV"  
-
   CONNECTION_STRING=YOUR_MONGODB_CLUSTER_CONNECTION_STRING  
-
   JWT_SECRET=YOUR_SECRET  
-
   JWT_EXPIRES=YOUR_EXPIRATION_TIME
 ``
 
