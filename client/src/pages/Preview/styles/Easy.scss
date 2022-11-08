@@ -1,0 +1,28 @@
+.easy {
+  font-family: 'Assistant';
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  p {
+    font-weight: 500;
+    font-size:  2rem;
+    text-decoration: underline;
+    margin-bottom: 2rem;
+  }
+
+  li {
+    margin: 1rem;
+  }
+
+  small {
+    font-weight: 500;
+  }
+
+  h2 {
+    font-family: 'Bad Script';
+    font-weight: 600;
+    text-align: center;
+    font-size: 2.8rem;
+  }
+}

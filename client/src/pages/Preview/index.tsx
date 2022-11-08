@@ -7,9 +7,10 @@ import Pricing from 'pages/Preview/Pricing'
 import Nav from 'components/Nav'
 import NavList from 'pages/Preview/NavList'
 import Helmet from 'react-helmet'
+import Easy from './Easy'
 
 export default function Preview () {
-	return (
+  return (
 		<>
 			<Helmet>
 				<title>Nopiqui | Get Started</title>
@@ -21,8 +22,9 @@ export default function Preview () {
 				</Nav>
 			</Header>
 			<Main />
-			<Mission />
-			<img className='sat' src={sit} alt="Sat person" />
+		<Mission />
+		<Easy />
+		<img className='sat' src={sit} alt="Sat person" />
 			<Pricing />
 			<footer className='foot'>
 				<p>Thanks for visiting</p>
@@ -30,5 +32,5 @@ export default function Preview () {
 				<p>&#10084;</p>
 			</footer>
 		</>
-	)
+  )
 }
