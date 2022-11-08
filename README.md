@@ -14,12 +14,14 @@ when archiving your note, it'll only be visible to you
 Anyone is allowed to improve Nopiqui.
 You'll need these .env variables:  
 
-**For the client directory:**
+**For the client directory:**  
+
 ``
   REACT_APP_PORT=3001
 ``
 
-**For the api directory:**
+**For the api directory:**  
+
 ``
   ENVIROMENT="DEV"  
   CONNECTION_STRING=YOUR_MONGODB_CLUSTER_CONNECTION_STRING  
