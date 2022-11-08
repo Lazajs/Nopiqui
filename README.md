@@ -27,8 +27,7 @@ You'll need these .env variables:
 
   JWT_SECRET=YOUR_SECRET  
 
-  JWT_EXPIRES=YOUR_EXPIRATION_TIME  
-  
+  JWT_EXPIRES=YOUR_EXPIRATION_TIME
 ``
 
 #### Thank you for visiting Nopiqui
